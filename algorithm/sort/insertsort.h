@@ -5,6 +5,7 @@
 
 namespace pits
 {
+    /* 插入排序 */
     template <typename T>
     void insertsort(T m[], uint32_t n, char c = '<')
     {
