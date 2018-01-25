@@ -1,7 +1,7 @@
 #ifndef LABEL_H
 #define LABEL_H
 
-namespace pit
+namespace pits
 {
     template <typename T>
     struct node
