@@ -23,7 +23,7 @@ namespace pits
                 {
                     m[j] = m[j - 1];
                 }
-                
+
                 m[j] = tm;
             }
         }
@@ -45,7 +45,7 @@ namespace pits
                 {
                     *(pl + j) = *(pl + j - 1);
                 }
-                
+
                 *(pl + j) = tm;
             }
         }
@@ -67,7 +67,7 @@ namespace pits
                 {
                     *(first + j) = *(first + j - 1);
                 }
-                
+
                 *(first + j) = tm;
             }
         }
