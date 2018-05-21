@@ -7,7 +7,9 @@
 
 namespace pits
 {
-    /* Range: m[l] - m[r] */
+    /**
+     * Range: m[l] - m[r]
+     */
     template <typename T>
     void quicksort(T m[], int32_t l, int32_t r)
     {
@@ -39,7 +41,9 @@ namespace pits
         }
     }
 
-    /* Range: [pl, pr] */
+    /**
+     * Range: [pl, pr]
+     */
     template <typename T>
     void quicksort(T *pl, T *pr)
     {
@@ -72,7 +76,9 @@ namespace pits
         }
     }
 
-    /* Range: [first, last] */
+    /**
+     * Range: [first, last]
+     */
     template <typename RandomIt>
     void quicksort(RandomIt first, RandomIt last)
     {

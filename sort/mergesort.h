@@ -50,17 +50,19 @@ namespace pits
         }
     }
 
-    /* Range: m[0] - m[n - 1] */
+    /**
+     * Range: m[0] - m[n - 1]
+     */
     template <typename T>
     void mergesort(T m[], int32_t n)
     {
-        T w[n]; /* 辅助数组w */
+        T box[n]; /* 辅助数组box */
 
         for (int32_t len = 1; len < n; )
         {
-            pass(m, w, len, n); len *= 2; /* 将m分割为长度为len的子表并传递到w中 */
+            pass(m, box, len, n); len *= 2; /* 将m分割为长度为len的子表并传递到box中 */
 
-            pass(w, m, len, n); len *= 2; /* 将w分割为长度为len的子表并传递到m中 */
+            pass(box, m, len, n); len *= 2; /* 将box分割为长度为len的子表并传递到m中 */
         }
     }
 
@@ -114,17 +116,85 @@ namespace pits
         }
     }
 
-    /* Range: [pl, pr) */
+    /**
+     * Range: [pl, pr)
+     */
     template <typename T>
     void mergesort(T *pl, T *pr)
     {
-        T m[pr - pl];
+        T box[pr - pl];
 
         for (int32_t len = 1; len < pr - pl; )
         {
-            transmit(pl, m, len, pr - pl); len *= 2;
+            transmit(pl, box, len, pr - pl); len *= 2;
 
-            transmit(m, pl, len, pr - pl); len *= 2;
+            transmit(box, pl, len, pr - pl); len *= 2;
+        }
+    }
+
+    template <typename RandomIt>
+    void coalesce(RandomIt lt, RandomIt rt, int32_t low, int32_t middle, int32_t high)
+    {
+        int32_t i = low, j = middle + 1;
+
+        while (i <= middle && j <= high)
+        {
+            if (*(lt + i) < *(lt + j))
+            {
+                *(rt + low) = *(lt + i); ++low, ++i;
+            }
+            else
+            {
+                *(rt + low) = *(lt + j); ++low, ++j;
+            }
+        }
+        while (i <= middle)
+        {
+            *(rt + low) = *(lt + i); ++low, ++i;
+        }
+        while (j <= high)
+        {
+            *(rt + low) = *(lt + j); ++low, ++j;
+        }
+    }
+
+    template <typename RandomIt>
+    void deliver(RandomIt lt, RandomIt rt, int32_t len, int32_t n)
+    {
+        int32_t pos = 0;
+
+        while (pos + 2 * len - 1 <= n - 1)
+        {
+            coalesce(lt, rt, pos, pos + len - 1, pos + 2 * len - 1);
+
+            pos += 2 * len;
+        }
+        if (pos + len - 1 <= n - 1)
+        {
+            coalesce(lt, rt, pos, pos + len - 1, n - 1);
+        }
+        else
+        {
+            for (int32_t i = pos; i < n; ++i)
+            {
+                *(rt + i) = *(lt + i);
+            }
+        }
+    }
+
+    /**
+     * Range: [first, last)
+     */
+    template <typename RandomIt>
+    void mergesort(RandomIt first, RandomIt last)
+    {
+        decltype(*first) box[last - first];
+
+        for (int32_t len = 1; len < last - first; )
+        {
+            deliver(first, box, len, last - first); len *= 2;
+
+            deliver(box, first, len, last - first); len *= 2;
         }
     }
 }

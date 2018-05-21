@@ -21,7 +21,9 @@ namespace pits
         } return digit;
     }
 
-    /* Range: m[0] - m[n - 1] */
+    /**
+     * Range: m[0] - m[n - 1]
+     */
     template <typename T>
     void radixsort(T m[], int32_t n)
     {
@@ -86,7 +88,9 @@ namespace pits
         } return digit;
     }
 
-    /* Range: [pl, pr) */
+    /**
+     * Range: [pl, pr)
+     */
     template <typename T>
     void radixsort(T *pl, T *pr)
     {
@@ -127,6 +131,69 @@ namespace pits
             for (j = 0; j < pr - pl; ++j)
             {
                 *(pl + j) = bucket[j];
+            }
+
+            radix *= 10;
+        }
+    }
+
+    template <typename RandomIt>
+    int32_t places(RandomIt it, int32_t n)
+    {
+        int32_t digit = 1, contrast = 10;
+
+        for (int32_t i = 0; i < n; ++i)
+        {
+            while (*(it + i) >= contrast)
+            {
+                contrast *= 10; digit += 1;
+            }
+        } return digit;
+    }
+
+    /**
+     * Range: [first, last)
+     */
+    template <typename RandomIt>
+    void radixsort(RandomIt first, RandomIt last)
+    {
+        decltype(*first) bucket[last - first];
+
+        int32_t count[10];
+
+        int32_t i, j, k, radix = 1;
+
+        for (i = 1; i <= places(first, last - first); ++i)
+        {
+            for (j = 0; j < 10; ++j)
+            {
+                count[j] = 0;
+            }
+
+            for (j = 0; j < last - first; ++j)
+            {
+                k = (*(first + j) / radix) % 10;
+
+                ++count[k];
+            }
+
+            for (j = 1; j < 10; ++j)
+            {
+                count[j] += count[j - 1];
+            }
+
+            for (j = last - first - 1; j >= 0; --j)
+            {
+                k = (*(first + j) / radix) % 10;
+
+                bucket[count[k] - 1] = *(first + j);
+
+                --count[k];
+            }
+
+            for (j = 0; j < last - first; ++j)
+            {
+                *(first + j) = bucket[j];
             }
 
             radix *= 10;

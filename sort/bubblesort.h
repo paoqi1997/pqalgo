@@ -7,7 +7,9 @@
 
 namespace pits
 {
-    /* Range: m[0] - m[n - 1] */
+    /**
+     * Range: m[0] - m[n - 1]
+     */
     template <typename T>
     void bubblesort(T m[], uint32_t n)
     {
@@ -20,7 +22,9 @@ namespace pits
         }
     }
 
-    /* Range: [pl, pr) */
+    /**
+     * Range: [pl, pr)
+     */
     template <typename T>
     void bubblesort(T *pl, T *pr)
     {
@@ -33,7 +37,9 @@ namespace pits
         }
     }
 
-    /* Range: [first, last) */
+    /**
+     * Range: [first, last)
+     */
     template <typename RandomIt>
     void bubblesort(RandomIt first, RandomIt last)
     {
