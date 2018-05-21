@@ -19,6 +19,7 @@ namespace pits
             else
                 m2[low++] = m1[j++];     /* 移动右子表元素到m2中 */
         }
+
         while (i <= middle)
             m2[low++] = m1[i++];         /* 移动左子表剩余元素到m2中 */
 
@@ -82,6 +83,7 @@ namespace pits
                 *(q + low) = *(p + j); ++low, ++j;
             }
         }
+
         while (i <= middle)
         {
             *(q + low) = *(p + i); ++low, ++i;
@@ -148,6 +150,7 @@ namespace pits
                 *(rt + low) = *(lt + j); ++low, ++j;
             }
         }
+
         while (i <= middle)
         {
             *(rt + low) = *(lt + i); ++low, ++i;
