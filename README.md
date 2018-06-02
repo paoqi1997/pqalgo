@@ -43,3 +43,15 @@
         + 归并排序 <-> mergesort.h
 
         + 基数排序 <-> radixsort.h
+
++ 数据结构
+
+    + 链表
+
+        + 单向链表 <-> forward_list.h
+
+        + 双向链表 <-> list.h
+
+    + 栈 <-> stack.h
+
+    + 队列 <-> queue.h
