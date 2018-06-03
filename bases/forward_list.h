@@ -1,6 +1,7 @@
 #ifndef FORWARD_LIST_H
 #define FORWARD_LIST_H
 
+#include <iostream>
 #include <memory>
 #include <utility>
 
@@ -108,6 +109,9 @@ namespace pits
         pointer data(size_type) noexcept;
         const_pointer data(size_type) const noexcept;
 
+        reference at(size_type);
+        const_reference at(size_type) const;
+
         reference operator [] (size_type);
         const_reference operator [] (size_type) const;
 
@@ -164,6 +168,8 @@ namespace pits
 
         template <typename UnaryPredicate>
         void remove_if(UnaryPredicate p);
+
+        void output() noexcept;
 
         void reverse() noexcept;
 
@@ -356,6 +362,32 @@ namespace pits
 
     template <typename T, typename Alloc>
     typename forward_list<T, Alloc>::reference
+    forward_list<T, Alloc>::at(size_type pos)
+    {
+        if (pos < 0) {
+            return data(0)->element;
+        } else if (pos >= cnt) {
+            return data(cnt - 1)->element;
+        } else {
+            return data(pos)->element;
+        }
+    }
+
+    template <typename T, typename Alloc>
+    typename forward_list<T, Alloc>::const_reference
+    forward_list<T, Alloc>::at(size_type pos) const
+    {
+        if (pos < 0) {
+            return data(0)->element;
+        } else if (pos >= cnt) {
+            return data(cnt - 1)->element;
+        } else {
+            return data(pos)->element;
+        }
+    }
+
+    template <typename T, typename Alloc>
+    typename forward_list<T, Alloc>::reference
     forward_list<T, Alloc>::operator [] (size_type pos)
     {
         if (pos < 0) {
@@ -421,10 +453,29 @@ namespace pits
     {
         if (empty()) { assign(count, value); return; }
 
-        if (pos < cnt) {
-            for (size_t i = 0; i < count; ++i) insert(pos, value);
-        } else {
-            for (size_t i = 0; i < count; ++i) insert(cnt, value);
+        auto pt = ph;
+
+        if (pos < cnt)
+        {
+            for (size_t i = 0; i < pos; ++i) pt = pt->next;
+
+            for (size_t i = 0; i < count; ++i)
+            {
+                auto p = alloc.allocate(1); *p = node<T>(value);
+
+                p->next = pt->next; pt->next = p; ++cnt;
+            }
+        }
+        else
+        {
+            for (size_t i = 0; i < cnt; ++i) pt = pt->next;
+
+            for (size_t i = 0; i < count; ++i)
+            {
+                auto p = alloc.allocate(1); *p = node<T>(value);
+
+                pt->next = p; pt = pt->next; ++cnt;
+            }
         }
     }
 
@@ -433,15 +484,30 @@ namespace pits
     {
         if (empty()) { assign(rhs); return; }
 
-        auto p = rhs.data(0);
+        auto ps = ph, pt = rhs.data(0);
 
-        if (pos < cnt) {
-            for (size_t i = 0; i < rhs.size(); ++i) {
-                insert(pos + i, p->element); p = p->next;
+        if (pos < cnt)
+        {
+            for (size_t i = 0; i < pos; ++i) ps = ps->next;
+
+            for (size_t i = 0; i < rhs.size(); ++i)
+            {
+                auto p = alloc.allocate(1); *p = node<T>(pt->element);
+
+                p->next = ps->next; ps->next = p;
+
+                ps = ps->next; pt = pt->next; ++cnt;
             }
-        } else {
-            for (size_t i = 0; i < rhs.size(); ++i) {
-                insert(cnt + i, p->element); p = p->next;
+        }
+        else
+        {
+            for (size_t i = 0; i < cnt; ++i) ps = ps->next;
+
+            for (size_t i = 0; i < rhs.size(); ++i)
+            {
+                auto p = alloc.allocate(1); *p = node<T>(pt->element);
+
+                ps->next = p; ps = ps->next; pt = pt->next; ++cnt;
             }
         }
     }
@@ -451,13 +517,28 @@ namespace pits
     {
         if (empty()) { assign(init); return; }
 
-        if (pos < cnt) {
-            for (auto it = init.begin(); it != init.end(); ++it) {
-                insert(pos + it - init.begin(), *it);
+        auto pt = ph;
+
+        if (pos < cnt)
+        {
+            for (size_t i = 0; i < pos; ++i) pt = pt->next;
+
+            for (auto it = init.begin(); it != init.end(); ++it)
+            {
+                auto p = alloc.allocate(1); *p = node<T>(*it);
+
+                p->next = pt->next; pt->next = p; pt = pt->next; ++cnt;
             }
-        } else {
-            for (auto it = init.begin(); it != init.end(); ++it) {
-                insert(cnt + it - init.begin(), *it);
+        }
+        else
+        {
+            for (size_t i = 0; i < cnt; ++i) pt = pt->next;
+
+            for (auto it = init.begin(); it != init.end(); ++it)
+            {
+                auto p = alloc.allocate(1); *p = node<T>(*it);
+
+                pt->next = p; pt = pt->next; ++cnt;
             }
         }
     }
@@ -465,9 +546,7 @@ namespace pits
     template <typename T, typename Alloc>
     void forward_list<T, Alloc>::erase(size_type pos)
     {
-        if (empty()) return;
-
-        pointer p = ph, pt;
+        if (empty()) return; pointer p = ph, pt;
 
         if (pos < cnt - 1)
         {
@@ -488,13 +567,29 @@ namespace pits
     template <typename T, typename Alloc>
     void forward_list<T, Alloc>::erase(size_type lpos, size_type rpos)
     {
+        if (empty()) return; pointer p = ph, pt;
+
         if (lpos <= rpos)
         {
             if (lpos >= cnt) return;
 
             if (rpos >= cnt) rpos = cnt - 1;
 
-            auto i = rpos - lpos + 1; while (i-- > 0) erase(lpos);
+            for (size_t i = 0; i < lpos; ++i) p = p->next;
+
+            for (size_t i = 0; i < rpos - lpos + 1; ++i)
+            {
+                if (lpos < cnt - 1)
+                {
+                    pt = p->next; p->next = pt->next;
+
+                    alloc.deallocate(pt, 1); --cnt;
+                }
+                else if (lpos == cnt - 1)
+                {
+                    alloc.deallocate(p->next, 1); p->next = nullptr; --cnt;
+                }
+            }
         }
     }
 
@@ -503,7 +598,7 @@ namespace pits
     {
         for (size_t i = 0; i + 1 < size(); )
         {
-            if ((*this)[i] == (*this)[i + 1]) erase(i + 1); else ++i;
+            if (at(i) == at(i + 1)) erase(i + 1); else ++i;
         }
     }
 
@@ -513,7 +608,7 @@ namespace pits
     {
         for (size_t i = 0; i + 1 < size(); )
         {
-            if (p((*this)[i], (*this)[i + 1])) erase(i + 1); else ++i;
+            if (p(at(i), at(i + 1))) erase(i + 1); else ++i;
         }
     }
 
@@ -522,7 +617,7 @@ namespace pits
     {
         for (size_t i = 0; i < size(); )
         {
-            if ((*this)[i] == value) erase(i); else ++i;
+            if (at(i) == value) erase(i); else ++i;
         }
     }
 
@@ -532,8 +627,20 @@ namespace pits
     {
         for (size_t i = 0; i < size(); )
         {
-            if (p((*this)[i])) erase(i); else ++i;
+            if (p(at(i))) erase(i); else ++i;
         }
+    }
+
+    template <typename T, typename Alloc>
+    void forward_list<T, Alloc>::output() noexcept
+    {
+        auto p = ph->next;
+
+        for (size_t i = 0; i < cnt; ++i)
+        {
+            std::cout << p->element << ' '; p = p->next;
+        }
+        std::cout << std::endl;
     }
 
     template <typename T, typename Alloc>
