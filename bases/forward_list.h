@@ -20,8 +20,7 @@ namespace pits
     template <typename T, typename Alloc> class forward_list;
 
     template <typename T, typename Alloc>
-    int forward_list_compare
-    (const forward_list<T, Alloc>& lhs, const forward_list<T, Alloc>& rhs)
+    int forward_list_compare(const forward_list<T, Alloc>& lhs, const forward_list<T, Alloc>& rhs)
     {
         auto ps = lhs.data(0), pt = rhs.data(0);
 
