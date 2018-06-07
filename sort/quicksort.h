@@ -71,8 +71,7 @@ namespace pits
                 {
                     std::swap(*(pl + i), *(pl + j));
                 }
-            }
-            quicksort(pl, pl + i - 1); quicksort(pl + i + 1, pr);
+            } quicksort(pl, pl + i - 1); quicksort(pl + i + 1, pr);
         }
     }
 
