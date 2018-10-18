@@ -197,8 +197,6 @@ namespace pits
 
         allocator_type get_allocator() const { return alloc; }
 
-        bool find(const T&);
-
         void clear() noexcept;
 
         void insert(const T&);
@@ -206,6 +204,8 @@ namespace pits
         void insert(std::initializer_list<T>);
 
         void erase(const T&);
+
+        bool find(const T&) const;
 
         void output(void(*)(const_pointer)) noexcept;
 
@@ -621,28 +621,6 @@ namespace pits
     }
 
     template <typename T, typename Alloc>
-    bool binarysearchtree<T, Alloc>::find(const T& value)
-    {
-        pointer p = root;
-
-        while (p != nullptr)
-        {
-            if (value < p->element)
-            {
-                p = p->leftchild;
-            }
-            else if (value > p->element)
-            {
-                p = p->rightchild;
-            }
-            else
-            {
-                return true;
-            }
-        } return false;
-    }
-
-    template <typename T, typename Alloc>
     void binarysearchtree<T, Alloc>::clear() noexcept
     {
         /* 不保留根节点 */
@@ -849,6 +827,28 @@ namespace pits
         }
         /* 删除待删节点 */
         --cnt; alloc.deallocate(p, 1);
+    }
+
+    template <typename T, typename Alloc>
+    bool binarysearchtree<T, Alloc>::find(const T& value) const
+    {
+        pointer p = root;
+
+        while (p != nullptr)
+        {
+            if (value < p->element)
+            {
+                p = p->leftchild;
+            }
+            else if (value > p->element)
+            {
+                p = p->rightchild;
+            }
+            else
+            {
+                return true;
+            }
+        } return false;
     }
 
     template <typename T, typename Alloc>

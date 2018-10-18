@@ -91,7 +91,8 @@ namespace pits
     template <typename T, typename Alloc> class binarytree;
 
     template <typename T, typename Alloc>
-    int binarytree_compare(const binarytree<T, Alloc>& lhs, const binarytree<T, Alloc>& rhs)
+    int binarytree_compare
+    (const binarytree<T, Alloc>& lhs, const binarytree<T, Alloc>& rhs)
     {
         auto box1 = lhs.get_tnodes(), box2 = rhs.get_tnodes();
 
