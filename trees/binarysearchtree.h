@@ -250,29 +250,29 @@ namespace pits
 
         while (!box.empty())
         {
-            pointer p = root, pt, pu = box.front();
+            pointer p = root, pp, pq = box.front();
 
             while (p != nullptr)
             {
-                pt = p;
+                pp = p;
 
-                if (pu->element < p->element) {
+                if (pq->element < p->element) {
                     p = p->leftchild;
-                } else if (pu->element > p->element) {
+                } else if (pq->element > p->element) {
                     p = p->rightchild;
                 } else {
                     break;
                 }
             }
 
-            if (pu->element < pt->element)
+            if (pq->element < pp->element)
             {
-                pt->leftchild = alloc.allocate(1); *(pt->leftchild) = bstnode<T>(pu->element);
+                pp->leftchild = alloc.allocate(1); *(pp->leftchild) = bstnode<T>(pq->element);
                 ++cnt; box.pop();
             }
-            else if (pu->element > pt->element)
+            else if (pq->element > pp->element)
             {
-                pt->rightchild = alloc.allocate(1); *(pt->rightchild) = bstnode<T>(pu->element);
+                pp->rightchild = alloc.allocate(1); *(pp->rightchild) = bstnode<T>(pq->element);
                 ++cnt; box.pop();
             }
             else
@@ -340,29 +340,29 @@ namespace pits
 
             while (!box.empty())
             {
-                pointer p = root, pt, pu = box.front();
+                pointer p = root, pp, pq = box.front();
 
                 while (p != nullptr)
                 {
-                    pt = p;
+                    pp = p;
 
-                    if (pu->element < p->element) {
+                    if (pq->element < p->element) {
                         p = p->leftchild;
-                    } else if (pu->element > p->element) {
+                    } else if (pq->element > p->element) {
                         p = p->rightchild;
                     } else {
                         break;
                     }
                 }
 
-                if (pu->element < pt->element)
+                if (pq->element < pp->element)
                 {
-                    pt->leftchild = alloc.allocate(1); *(pt->leftchild) = bstnode<T>(pu->element);
+                    pp->leftchild = alloc.allocate(1); *(pp->leftchild) = bstnode<T>(pq->element);
                     ++cnt; box.pop();
                 }
-                else if (pu->element > pt->element)
+                else if (pq->element > pp->element)
                 {
-                    pt->rightchild = alloc.allocate(1); *(pt->rightchild) = bstnode<T>(pu->element);
+                    pp->rightchild = alloc.allocate(1); *(pp->rightchild) = bstnode<T>(pq->element);
                     ++cnt; box.pop();
                 }
                 else
@@ -426,17 +426,15 @@ namespace pits
     {
         if (!empty()) clear();
 
-        cnt = 1;
-
         root = alloc.allocate(1); *root = bstnode<T>(value);
+
+        cnt = 1;
     }
 
     template <typename T, typename Alloc>
     void binarysearchtree<T, Alloc>::assign(const binarysearchtree& rhs)
     {
         if (!empty()) clear();
-
-        cnt = 0;
 
         auto box = rhs.get_bstnodes();
 
@@ -449,29 +447,29 @@ namespace pits
 
         while (!box.empty())
         {
-            pointer p = root, pt, pu = box.front();
+            pointer p = root, pp, pq = box.front();
 
             while (p != nullptr)
             {
-                pt = p;
+                pp = p;
 
-                if (pu->element < p->element) {
+                if (pq->element < p->element) {
                     p = p->leftchild;
-                } else if (pu->element > p->element) {
+                } else if (pq->element > p->element) {
                     p = p->rightchild;
                 } else {
                     break;
                 }
             }
 
-            if (pu->element < pt->element)
+            if (pq->element < pp->element)
             {
-                pt->leftchild = alloc.allocate(1); *(pt->leftchild) = bstnode<T>(pu->element);
+                pp->leftchild = alloc.allocate(1); *(pp->leftchild) = bstnode<T>(pq->element);
                 ++cnt; box.pop();
             }
-            else if (pu->element > pt->element)
+            else if (pq->element > pp->element)
             {
-                pt->rightchild = alloc.allocate(1); *(pt->rightchild) = bstnode<T>(pu->element);
+                pp->rightchild = alloc.allocate(1); *(pp->rightchild) = bstnode<T>(pq->element);
                 ++cnt; box.pop();
             }
             else
@@ -485,8 +483,6 @@ namespace pits
     void binarysearchtree<T, Alloc>::assign(std::initializer_list<T> init)
     {
         if (!empty()) clear();
-
-        cnt = 0;
 
         if (init.begin() == init.end()) {
             root = nullptr;
@@ -668,29 +664,29 @@ namespace pits
 
         while (!box.empty())
         {
-            pointer p = root, pt, pu = box.front();
+            pointer p = root, pp, pq = box.front();
 
             while (p != nullptr)
             {
-                pt = p;
+                pp = p;
 
-                if (pu->element < p->element) {
+                if (pq->element < p->element) {
                     p = p->leftchild;
-                } else if (pu->element > p->element) {
+                } else if (pq->element > p->element) {
                     p = p->rightchild;
                 } else {
                     break;
                 }
             }
 
-            if (pu->element < pt->element)
+            if (pq->element < pp->element)
             {
-                pt->leftchild = alloc.allocate(1); *(pt->leftchild) = bstnode<T>(pu->element);
+                pp->leftchild = alloc.allocate(1); *(pp->leftchild) = bstnode<T>(pq->element);
                 ++cnt; box.pop();
             }
-            else if (pu->element > pt->element)
+            else if (pq->element > pp->element)
             {
-                pt->rightchild = alloc.allocate(1); *(pt->rightchild) = bstnode<T>(pu->element);
+                pp->rightchild = alloc.allocate(1); *(pp->rightchild) = bstnode<T>(pq->element);
                 ++cnt; box.pop();
             }
             else
@@ -769,7 +765,7 @@ namespace pits
                 pq = pp; pp = pp->rightchild;
             }
 
-            /* 建立过渡节点并处理叶子节点的连接关系 */
+            /* 建立顶替节点并处理叶子节点的连接关系 */
             auto pr = alloc.allocate(1); pr->element = pp->element;
 
             pr->leftchild = p->leftchild; pr->rightchild = p->rightchild;
