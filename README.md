@@ -56,6 +56,8 @@
 
     + 队列 <-> queue.h
 
+    + 哈希表 <-> hashtable.h
+
     + 树
 
         + 二叉树 <-> binarytree.h
