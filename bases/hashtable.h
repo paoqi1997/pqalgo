@@ -74,7 +74,7 @@ namespace pits
                     }
                 }
             }
-        } return (lhs.size() == rhs.size()) ? true : false;
+        } return true;
     }
 
     template <typename Key, typename T, typename Hash, typename Alloc>
