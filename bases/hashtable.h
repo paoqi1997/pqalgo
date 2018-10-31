@@ -2,7 +2,6 @@
 #define HASHTABLE_H
 
 #include <iostream>
-#include <iomanip>
 #include <memory>
 #include <utility>
 
