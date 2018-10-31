@@ -20,12 +20,9 @@ namespace pits
         {
             unsigned long hash = 0;
 
-            for (auto c : key)
-            {
+            for (auto c : key) {
                 hash = hash * 33 + c;
-            }
-
-            return hash;
+            } return hash;
         }
     };
 
