@@ -18,7 +18,7 @@
 
             + [冒泡排序](https://github.com/paoqi1997/Pits/blob/master/sort/bubblesort.h)
 
-            + 快速排序
+            + [快速排序](https://github.com/paoqi1997/Pits/blob/master/sort/quicksort.h)
 
         + 选择排序
 
