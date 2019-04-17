@@ -17,3 +17,7 @@
         + 交换排序
 
             + [冒泡排序](https://github.com/paoqi1997/Pits/blob/master/sort/bubblesort.h)
+
+        + 选择排序
+
+            + 简单选择排序
