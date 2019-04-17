@@ -24,6 +24,8 @@
 
             + [简单选择排序](https://github.com/paoqi1997/Pits/blob/master/sort/selectsort.h)
 
+            + 堆排序
+
         + 插入排序
 
             + [直接插入排序](https://github.com/paoqi1997/Pits/blob/master/sort/insertsort.h)
