@@ -7,10 +7,10 @@ namespace pits
 {
 
     /**
-     * Range: m[0] - m[n - 1]
+     * range: [0, n - 1]
      */
     template <typename T>
-    void bubblesort(T m[], uint32_t n)
+    void bubblesort(T m[], int n)
     {
         for (int i = 0; i < n - 1; ++i) {
             for (int j = 0; j < n - i - 1; ++j) {
