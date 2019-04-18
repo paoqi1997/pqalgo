@@ -7,7 +7,8 @@ namespace pits
 {
 
 template <typename T>
-void hs(T m[], int rootIndex, int n) {
+void hs(T m[], int rootIndex, int n)
+{
     T rootVal = m[rootIndex];
     int leafIndex = 2 * rootIndex + 1;
     while (leafIndex < n) {
