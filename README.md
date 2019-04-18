@@ -32,4 +32,4 @@
 
             + [希尔排序](https://github.com/paoqi1997/Pits/blob/master/sort/shellsort.h)
 
-        + 归并排序
+        + [归并排序](https://github.com/paoqi1997/Pits/blob/master/sort/mergesort.h)
