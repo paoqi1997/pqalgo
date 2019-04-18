@@ -31,3 +31,5 @@
             + [直接插入排序](https://github.com/paoqi1997/Pits/blob/master/sort/insertsort.h)
 
             + [希尔排序](https://github.com/paoqi1997/Pits/blob/master/sort/shellsort.h)
+
+        + 归并排序
