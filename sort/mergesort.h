@@ -28,7 +28,7 @@ template <typename T>
 void ms(T m1[], T m2[], int len, int n)
 {
     int i = 0;
-    while (i + 2 * len < n) {
+    while (i + 2 * len <= n) {
         merge(m1, m2, i, i + len - 1, i + 2 * len - 1);
         i += 2 * len;
     }
