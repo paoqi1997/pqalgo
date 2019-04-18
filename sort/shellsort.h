@@ -13,12 +13,12 @@ void shellsort(T m[], int n)
     for (int gap = n / 2; gap > 0; gap /= 2) {
         for (int i = gap; i < n; ++i) {
             T tmpVal = m[i];
-            int j = i - gap;
-            while (j >= 0 && m[j] > tmpVal) {
-                m[j + gap] = m[j];
+            int j = i;
+            while (j >= gap && m[j - gap] > tmpVal) {
+                m[j] = m[j - gap];
                 j -= gap;
             }
-            m[j + gap] = tmpVal;
+            m[j] = tmpVal;
         }
     }
 }

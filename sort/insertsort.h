@@ -11,15 +11,13 @@ template <typename T>
 void insertsort(T m[], int n)
 {
     for (int i = 1; i < n; ++i) {
-        if (m[i - 1] > m[i]) {
-            T tmpVal = m[i];
-            int j = i;
-            while (j > 0 && m[j - 1] > tmpVal) {
-                m[j] = m[j - 1];
-                --j;
-            }
-            m[j] = tmpVal;
+        T tmpVal = m[i];
+        int j = i;
+        while (j > 0 && m[j - 1] > tmpVal) {
+            m[j] = m[j - 1];
+            --j;
         }
+        m[j] = tmpVal;
     }
 }
 
