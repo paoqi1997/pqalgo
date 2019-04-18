@@ -42,6 +42,9 @@ void ms(T m1[], T m2[], int len, int n)
     }
 }
 
+/**
+ * range: [0, n - 1]
+ */
 template <typename T>
 void mergesort(T m[], int n)
 {
