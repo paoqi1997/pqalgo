@@ -35,3 +35,7 @@
         + [归并排序](https://github.com/paoqi1997/Pits/blob/master/sort/mergesort.h)
 
         + [基数排序](https://github.com/paoqi1997/Pits/blob/master/sort/radixsort.h)
+
+    + 查找
+
+        + 二分查找
