@@ -9,11 +9,11 @@ template <typename T> int maxdigit(T m[], int n);
 template <>
 int maxdigit(int m[], int n)
 {
-    int tmpVal = 10, digit = 1;
+    int digit = 1, tmpVal = 10;
     for (int i = 0; i < n; ++i) {
         while (m[i] >= tmpVal) {
-            tmpVal *= 10;
             ++digit;
+            tmpVal *= 10;
         }
     }
     return digit;
@@ -38,8 +38,8 @@ void radixsort(int m[], int n)
         }
 
         for (int i = 0; i < n; ++i) {
-            int k = (m[i] / radix) % 10;
-            ++counter[k];
+            int j = (m[i] / radix) % 10;
+            ++counter[j];
         }
 
         for (int i = 1; i < 10; ++i) {
@@ -47,9 +47,9 @@ void radixsort(int m[], int n)
         }
 
         for (int i = n - 1; i >= 0; --i) {
-            int k = (m[i] / radix) % 10;
-            bucket[counter[k] - 1] = m[i];
-            --counter[k];
+            int j = (m[i] / radix) % 10;
+            bucket[counter[j] - 1] = m[i];
+            --counter[j];
         }
 
         for (int i = 0; i < n; ++i) {
