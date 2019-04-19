@@ -38,4 +38,4 @@
 
     + 查找
 
-        + 二分查找
+        + [二分查找](https://github.com/paoqi1997/Pits/blob/master/search/binsearch.h)
