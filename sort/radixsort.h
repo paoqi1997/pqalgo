@@ -21,6 +21,7 @@ int maxdigit(int m[], int n)
 
 /**
  * range: [0, n - 1]
+ * tips: Only for nonnegative numbers.
  */
 template <typename T> void radixsort(T m[], int n);
 
