@@ -11,7 +11,7 @@ namespace pits
 template <typename T>
 int binsearch(T m[], int n, T val)
 {
-    int low = 0, high = n;
+    int low = 0, high = n - 1;
     while (low <= high) {
         int middle = (low + high) / 2;
         if (m[middle] == val) {
