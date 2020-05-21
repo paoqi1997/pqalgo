@@ -1,5 +1,5 @@
-#ifndef PQALGO_BUBBLESORT_H
-#define PQALGO_BUBBLESORT_H
+#ifndef PQALGO_SORT_H
+#define PQALGO_SORT_H
 
 #include <cstddef>
 #include <utility>
@@ -21,4 +21,4 @@ void bubblesort(T m[], std::size_t n)
 
 } // namespace pqalgo
 
-#endif // PQALGO_BUBBLESORT_H
+#endif // PQALGO_SORT_H

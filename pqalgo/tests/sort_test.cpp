@@ -2,7 +2,7 @@
 #include <cassert>
 #include <iterator>
 
-#include <pqalgo/bubblesort.h>
+#include <pqalgo/sort.h>
 
 int main()
 {
