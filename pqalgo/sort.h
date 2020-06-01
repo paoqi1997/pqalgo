@@ -10,16 +10,16 @@ namespace pqalgo
 template <typename T>
 void selectsort(T m[], std::size_t n)
 {
-    for (std::size_t i = 0; i < n; ++i)
+    for (std::size_t i = 0; i < n - 1; ++i)
     {
-        std::size_t idx = i;
+        std::size_t minIdx = i;
         for (std::size_t j = i + 1; j < n; ++j)
         {
-            if (m[idx] > m[j]) {
-                idx = j;
+            if (m[minIdx] > m[j]) {
+                minIdx = j;
             }
         }
-        std::swap(m[i], m[idx]);
+        std::swap(m[i], m[minIdx]);
     }
 }
 

@@ -4,7 +4,7 @@ project (sorttest)
 include_directories (../..)
 
 file (GLOB SRCS *.cpp)
-file (GLOB INCS ../*.h)
+file (GLOB INCS ../sort.h)
 
 # 生成IDE工程时为源文件定义分组
 source_group ("src" FILES ${SRCS})
