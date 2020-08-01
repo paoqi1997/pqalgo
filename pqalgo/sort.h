@@ -72,6 +72,41 @@ void bubblesort(T m[], std::size_t n)
     }
 }
 
+template <typename T>
+std::size_t qs(T m[], std::size_t left, std::size_t right)
+{
+    T tmpVal = m[left];
+    while (left < right)
+    {
+        while (left < right && tmpVal <= m[right]) {
+            --right;
+        }
+        m[left] = m[right];
+        while (left < right && m[left] <= tmpVal) {
+            ++left;
+        }
+        m[right] = m[left];
+    }
+    m[left] = tmpVal;
+    return left;
+}
+
+template <typename T>
+void __quicksort(T m[], int left, int right)
+{
+    if (left < right) {
+        std::size_t index = qs(m, left, right);
+        __quicksort(m, left, index - 1);
+        __quicksort(m, index + 1, right);
+    }
+}
+
+template <typename T>
+void quicksort(T m[], std::size_t n)
+{
+    __quicksort(m, 0, n - 1);
+}
+
 } // namespace pqalgo
 
 #endif // PQALGO_SORT_H
