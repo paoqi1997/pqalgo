@@ -24,6 +24,25 @@ void insertsort(T m[], std::size_t n)
 }
 
 template <typename T>
+void shellsort(T m[], std::size_t n)
+{
+    for (std::size_t gap = n / 2; gap > 0; gap /= 2)
+    {
+        for (std::size_t i = gap; i < n; ++i)
+        {
+            T tmpVal = m[i];
+            std::size_t j = i;
+            while (j > 0 && m[j - gap] > tmpVal)
+            {
+                m[j] = m[j - gap];
+                j -= gap;
+            }
+            m[j] = tmpVal;
+        }
+    }
+}
+
+template <typename T>
 void selectsort(T m[], std::size_t n)
 {
     for (std::size_t i = 0; i < n - 1; ++i)
