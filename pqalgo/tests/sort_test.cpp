@@ -23,6 +23,7 @@ int main()
     unit_test(m, len, pqalgo::insertsort<int>);
     unit_test(m, len, pqalgo::shellsort<int>);
     unit_test(m, len, pqalgo::selectsort<int>);
+    unit_test(m, len, pqalgo::heapsort<int>);
     unit_test(m, len, pqalgo::bubblesort<int>);
     unit_test(m, len, pqalgo::quicksort<int>);
 

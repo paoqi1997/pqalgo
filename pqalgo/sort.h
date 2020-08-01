@@ -59,6 +59,39 @@ void selectsort(T m[], std::size_t n)
 }
 
 template <typename T>
+void __heapsort(T m[], std::size_t rootIndex, std::size_t n)
+{
+    T rootVal = m[rootIndex];
+    std::size_t leafIndex = rootIndex * 2 + 1;
+    while (leafIndex < n)
+    {
+        if (leafIndex + 1 < n && m[leafIndex] < m[leafIndex + 1]) {
+            ++leafIndex;
+        }
+        if (rootVal < m[leafIndex]) {
+            m[rootIndex] = m[leafIndex];
+            rootIndex = leafIndex, leafIndex = rootIndex * 2 + 1;
+        } else {
+            break;
+        }
+    }
+    m[rootIndex] = rootVal;
+}
+
+template <typename T>
+void heapsort(T m[], std::size_t n)
+{
+    for (int i = n / 2 - 1; i >= 0; --i) {
+        __heapsort(m, i, n);
+    }
+    for (std::size_t i = 1; i < n; ++i)
+    {
+        std::swap(m[0], m[n - i]);
+        __heapsort(m, 0, n - i);
+    }
+}
+
+template <typename T>
 void bubblesort(T m[], std::size_t n)
 {
     for (std::size_t i = 0; i < n - 1; ++i)
@@ -73,7 +106,7 @@ void bubblesort(T m[], std::size_t n)
 }
 
 template <typename T>
-std::size_t qs(T m[], std::size_t left, std::size_t right)
+std::size_t __qs(T m[], std::size_t left, std::size_t right)
 {
     T tmpVal = m[left];
     while (left < right)
@@ -95,7 +128,7 @@ template <typename T>
 void __quicksort(T m[], int left, int right)
 {
     if (left < right) {
-        std::size_t index = qs(m, left, right);
+        std::size_t index = __qs(m, left, right);
         __quicksort(m, left, index - 1);
         __quicksort(m, index + 1, right);
     }
