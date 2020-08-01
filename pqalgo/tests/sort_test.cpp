@@ -20,6 +20,7 @@ int main()
     int m[10];
     std::size_t len = sizeof(m) / sizeof(int);
 
+    unit_test(m, len, pqalgo::insertsort<int>);
     unit_test(m, len, pqalgo::selectsort<int>);
     unit_test(m, len, pqalgo::bubblesort<int>);
 
