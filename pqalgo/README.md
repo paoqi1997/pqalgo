@@ -14,3 +14,4 @@
 |选择排序|堆排序|O(nlogn)|O(nlogn)|O(nlogn)|O(1)|不稳定|
 |交换排序|冒泡排序|O(n^2)|O(n)|O(n^2)|O(1)|稳定|
 |交换排序|快速排序|O(nlogn)|O(nlogn)|O(n^2)|O(nlogn)|不稳定|
+|其他|归并排序|O(nlogn)|O(nlogn)|O(nlogn)|O(n)|稳定|
