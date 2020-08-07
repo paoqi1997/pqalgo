@@ -194,6 +194,61 @@ void mergesort(T m[], std::size_t n)
     delete []m2;
 }
 
+template <typename T>
+std::size_t __radixsort(T m[], std::size_t n);
+
+template <>
+std::size_t __radixsort(int m[], std::size_t n)
+{
+    std::size_t digit = 1, maxVal = 10;
+    for (std::size_t i = 0; i < n; ++i)
+    {
+        while (m[i] >= maxVal) {
+            ++digit;
+            maxVal *= 10;
+        }
+    }
+    return digit;
+}
+
+template <typename T>
+void radixsort(T m[], std::size_t n);
+
+template <>
+void radixsort(int m[], std::size_t n)
+{
+    auto buckets = new int[n];
+    int counters[10];
+    int radix = 1;
+    std::size_t maxDigit = __radixsort(m, n);
+    for (std::size_t d = 1; d <= maxDigit; ++d, radix *= 10)
+    {
+        for (std::size_t i = 0; i < 10; ++i) {
+            counters[i] = 0;
+        }
+
+        for (std::size_t i = 0; i < n; ++i) {
+            std::size_t idx = (m[i] / radix) % 10;
+            ++counters[idx];
+        }
+
+        for (std::size_t i = 1; i < 10; ++i) {
+            counters[i] += counters[i - 1];
+        }
+
+        for (int i = n - 1; i >= 0; --i) {
+            std::size_t j = (m[i] / radix) % 10;
+            buckets[counters[j] - 1] = m[i];
+            --counters[j];
+        }
+
+        for (std::size_t i = 0; i < n; ++i) {
+            m[i] = buckets[i];
+        }
+    }
+    delete []buckets;
+}
+
 } // namespace pqalgo
 
 #endif // PQALGO_SORT_H

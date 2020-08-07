@@ -27,6 +27,7 @@ int main()
     unit_test(m, len, pqalgo::bubblesort<int>);
     unit_test(m, len, pqalgo::quicksort<int>);
     unit_test(m, len, pqalgo::mergesort<int>);
+    unit_test(m, len, pqalgo::radixsort<int>);
 
     return 0;
 }
