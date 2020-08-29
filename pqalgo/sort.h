@@ -122,16 +122,23 @@ void bubblesort(T m[], std::size_t n)
 template <typename T>
 std::size_t __qs(T m[], std::size_t left, std::size_t right)
 {
+    // 第一个值作为基准值，即在 m[left] 处挖了个坑
     T tmpVal = m[left];
     while (left < right)
     {
+        // 自右向左寻找比基准值小的元素
         while (left < right && tmpVal <= m[right]) {
             --right;
         }
+        // 将 m[right] 处找到的元素填到 m[left] 处，同时形成新的 m[right] 坑
+        // 把比基准值小的元素放到左边
         m[left] = m[right];
+        // 自左向右寻找比基准值大的元素
         while (left < right && m[left] <= tmpVal) {
             ++left;
         }
+        // 将 m[left] 处找到的元素填到 m[right] 处，同时形成新的 m[left] 坑
+        // 把比基准值大的元素放到右边
         m[right] = m[left];
     }
     m[left] = tmpVal;
@@ -143,6 +150,7 @@ void __quicksort(T m[], int left, int right)
 {
     if (left < right) {
         std::size_t index = __qs(m, left, right);
+        // 对左右区间重复以上步骤
         __quicksort(m, left, index - 1);
         __quicksort(m, index + 1, right);
     }
@@ -160,6 +168,7 @@ void __ms(T m1[], T m2[], std::size_t low, std::size_t middle, std::size_t high)
     std::size_t i = low, j = middle + 1;
     while (i <= middle && j <= high)
     {
+        // 将较小的元素赋值给m2[low]
         if (m1[i] <= m1[j]) {
             m2[low++] = m1[i++];
         } else {
@@ -167,6 +176,7 @@ void __ms(T m1[], T m2[], std::size_t low, std::size_t middle, std::size_t high)
         }
     }
 
+    // 逻辑走到这里，说明其中一个序列已处理完毕
     while (i <= middle) {
         m2[low++] = m1[i++];
     }
@@ -179,15 +189,19 @@ template <typename T>
 void __mergesort(T m1[], T m2[], std::size_t len, std::size_t n)
 {
     std::size_t i = 0;
+    // 归并长度为两个子序列
     while (i + len * 2 <= n)
     {
+        // 将子序列两两进行归并
         __ms(m1, m2, i, i + len - 1, i + len * 2 - 1);
         i += len * 2;
     }
 
+    // 归并长度大于一个子序列但不足两个子序列
     if (i + len < n) {
         __ms(m1, m2, i, i + len - 1, n - 1);
     } else {
+        // 不足一个子序列
         for (std::size_t j = i; j < n; ++j) {
             m2[j] = m1[j];
         }
@@ -197,6 +211,7 @@ void __mergesort(T m1[], T m2[], std::size_t len, std::size_t n)
 template <typename T>
 void mergesort(T m[], std::size_t n)
 {
+    // m2为辅助数组
     auto m2 = new T[n];
     for (std::size_t i = 1; i < n; )
     {
@@ -234,28 +249,34 @@ void radixsort(int m[], std::size_t n)
     auto buckets = new int[n];
     int counters[10];
     int radix = 1;
+    // 序列中最大元素的位数
     std::size_t maxDigit = __radixsort(m, n);
     for (std::size_t d = 1; d <= maxDigit; ++d, radix *= 10)
     {
+        // 十进制，共10个计数器，这里将它们清零
         for (std::size_t i = 0; i < 10; ++i) {
             counters[i] = 0;
         }
 
+        // 获取元素的最后一位，对应计数器+1
         for (std::size_t i = 0; i < n; ++i) {
             std::size_t idx = (m[i] / radix) % 10;
             ++counters[idx];
         }
 
+        // 划分各个桶的索引区间
         for (std::size_t i = 1; i < 10; ++i) {
             counters[i] += counters[i - 1];
         }
 
+        // 按索引区间将元素分配到各个桶
         for (int i = n - 1; i >= 0; --i) {
             std::size_t j = (m[i] / radix) % 10;
             buckets[counters[j] - 1] = m[i];
             --counters[j];
         }
 
+        // 从桶中取出元素
         for (std::size_t i = 0; i < n; ++i) {
             m[i] = buckets[i];
         }
