@@ -1,33 +1,33 @@
 #include <algorithm>
 #include <cassert>
-#include <functional>
+#include <iostream>
 
 #include <pqalgo/sort.h>
 
-using sortFunc = std::function<void(int[], std::size_t)>;
-
-void unit_test(int m[], std::size_t len, const sortFunc& sf)
-{
-    std::size_t n = len;
-    std::for_each(m, m + len, [&n](int& x){ x = int(--n); });
-
-    sf(m, len);
-    assert(std::is_sorted(m, m + len) == true);
-}
+#define UNITTEST(m, len, sortfunc)                            \
+do {                                                          \
+    std::size_t n = len;                                      \
+    std::for_each(m, m + len, [&n](int& x){ x = int(--n); }); \
+                                                              \
+    sortfunc(m, len);                                         \
+    assert(std::is_sorted(m, m + len) == true);               \
+} while (0)
 
 int main()
 {
     int m[10];
     std::size_t len = sizeof(m) / sizeof(int);
 
-    unit_test(m, len, pqalgo::insertsort<int>);
-    unit_test(m, len, pqalgo::shellsort<int>);
-    unit_test(m, len, pqalgo::selectsort<int>);
-    unit_test(m, len, pqalgo::heapsort<int>);
-    unit_test(m, len, pqalgo::bubblesort<int>);
-    unit_test(m, len, pqalgo::quicksort<int>);
-    unit_test(m, len, pqalgo::mergesort<int>);
-    unit_test(m, len, pqalgo::radixsort<int>);
+    UNITTEST(m, len, pqalgo::insertsort);
+    UNITTEST(m, len, pqalgo::shellsort);
+    UNITTEST(m, len, pqalgo::selectsort);
+    UNITTEST(m, len, pqalgo::heapsort);
+    UNITTEST(m, len, pqalgo::bubblesort);
+    UNITTEST(m, len, pqalgo::quicksort);
+    UNITTEST(m, len, pqalgo::mergesort);
+    UNITTEST(m, len, pqalgo::radixsort);
+
+    std::cout << "ok." << std::endl;
 
     return 0;
 }

@@ -33,7 +33,7 @@ void shellsort(T m[], std::size_t n)
         for (std::size_t i = gap; i < n; ++i)
         {
             T tmpVal = m[i];
-            std::size_t j = i;
+            int j = i;
             while (j > 0 && m[j - gap] > tmpVal)
             {
                 m[j] = m[j - gap];
