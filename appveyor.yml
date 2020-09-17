@@ -22,9 +22,9 @@ configuration:
   - Release
 
 before_build: |
-  dir "C:/Program Files"
-  dir "C:/Program Files (x86)"
-  dir "C:/Program Files (x86)/Microsoft Visual Studio"
+  dir "C:\Program Files"
+  dir "C:\Program Files (x86)"
+  dir "C:\Program Files (x86)\Microsoft Visual Studio"
   cd pqalgo/tests
   cmake -S . -B build -G "Visual Studio %VS_VERSION%" -A %ARCH%
 
@@ -35,4 +35,4 @@ build:
 
 test_script:
   - dir
-  - .\\${configuration}\\app.exe
+  - .\\$(configuration)\\app.exe
