@@ -1,5 +1,7 @@
 # pqalgo
 
+[![Actions Status](https://github.com/paoqi1997/pqalgo/workflows/CI/badge.svg)](https://github.com/paoqi1997/pqalgo/actions?query=workflow%3ACI)
+
 算法与数据结构。
 
 ## 说明
