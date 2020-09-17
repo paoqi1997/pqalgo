@@ -26,14 +26,15 @@ environment:
 
 configuration:
   - Debug
+  - Release
 
 before_build: |
   cd pqalgo/tests
+  dir "C:/Program Files (x86)"
+  dir "C:/Program Files (x86)/Microsoft Visual Studio"
   cmake -S . -B build -G "Visual Studio %VS_VERSION%" -A %ARCH%
   cd build
   dir
-  dir "C:/Program Files (x86)"
-  dir "C:/Program Files (x86)/Microsoft Visual Studio"
 
 build:
   project: pqalgo/tests/build/sorttest.sln
