@@ -28,11 +28,13 @@ configuration:
   - Debug
 
 before_build:
+  - cmake --version
+  - cmake --help
   - cd pqalgo/tests
-  - dir
   - cmake -S . -B build -G "Visual Studio %VS_VERSION%" -A %ARCH%
   - dir
   - cd build
+  - dir
 
 build:
   project: sorttest.sln
