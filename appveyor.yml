@@ -37,7 +37,7 @@ before_build:
   - dir
 
 build:
-  project: sorttest.sln
+  project: pqalgo/tests/build/sorttest.sln
   parallel: true
   verbosity: minimal
 
