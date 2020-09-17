@@ -9,7 +9,7 @@ jobs:
 
       - name: test
         run: |
-          cd $GITHUB_WORKSPACE/pqalgo/test
+          cd $GITHUB_WORKSPACE/pqalgo/tests
           mkdir build && cd build
           cmake ..
           cmake --build .
