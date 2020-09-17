@@ -1,11 +1,8 @@
-configuration:
-  - Debug
-
 environment:
   matrix:
     - VS_NAME: Visual Studio 2015
       VS_VERSION: 14 2015
-      ARCH: win32
+      ARCH: Win32
 
     - VS_NAME: Visual Studio 2015
       VS_VERSION: 14 2015
@@ -13,7 +10,7 @@ environment:
 
     - VS_NAME: Visual Studio 2017
       VS_VERSION: 15 2017
-      ARCH: win32
+      ARCH: Win32
 
     - VS_NAME: Visual Studio 2017
       VS_VERSION: 15 2017
@@ -21,15 +18,21 @@ environment:
 
     - VS_NAME: Visual Studio 2019
       VS_VERSION: 16 2019
-      ARCH: win32
+      ARCH: Win32
 
     - VS_NAME: Visual Studio 2019
       VS_VERSION: 16 2019
       ARCH: x64
 
+configuration:
+  - Debug
+
 before_build:
   - cd pqalgo/tests
-  - cmake -DCMAKE_GENERATOR_PLATFORM=%ARCH% . -G "Visual Studio %VS_VERSION%"
+  - dir
+  - cmake -S . -B build -G "Visual Studio %VS_VERSION%" -A %ARCH%
+  - dir
+  - cd build
 
 build:
   project: sorttest.sln
