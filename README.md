@@ -1,5 +1,6 @@
 # pqalgo
 
+[![Build status](https://ci.appveyor.com/api/projects/status/gtji06d9u8bhocrc?svg=true)](https://ci.appveyor.com/project/paoqi1997/pqalgo)
 [![Actions Status](https://github.com/paoqi1997/pqalgo/workflows/CI/badge.svg)](https://github.com/paoqi1997/pqalgo/actions?query=workflow%3ACI)
 
 算法与数据结构。

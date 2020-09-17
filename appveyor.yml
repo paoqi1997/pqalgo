@@ -35,4 +35,4 @@ build:
 
 test_script:
   - dir
-  - .\\$(configuration)\\app.exe
+  - .\\%configuration%\\app.exe
