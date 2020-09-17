@@ -17,9 +17,7 @@ environment:
       VS_VERSION: 16 2019
       ARCH: x64
 
-configuration:
-  - Debug
-  - Release
+configuration: Debug
 
 before_build: |
   dir "C:\Program Files"
@@ -35,4 +33,4 @@ build:
 
 test_script:
   - dir build
-  - .\\%CONFIGURATION%\\app.exe
+  - .\\Debug\\app.exe
