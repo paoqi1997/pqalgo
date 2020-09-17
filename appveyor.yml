@@ -34,5 +34,5 @@ build:
   verbosity: minimal
 
 test_script:
-  - dir
-  - .\\%configuration%\\app.exe
+  - dir build
+  - .\\%CONFIGURATION%\\app.exe
