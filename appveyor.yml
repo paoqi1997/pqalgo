@@ -29,7 +29,7 @@ before_build: |
   cmake -S . -B build -G "Visual Studio %VS_VERSION%" -A %ARCH%
 
 build:
-  project: pqalgo/tests/build/sorttest.sln
+  project: pqalgo/tests/build/unittests.sln
   parallel: true
   verbosity: minimal
 
