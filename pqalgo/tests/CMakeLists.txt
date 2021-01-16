@@ -1,13 +1,22 @@
 cmake_minimum_required (VERSION 3.4)
-project (sorttest)
+project (unittests)
 
 include_directories (../..)
 
-file (GLOB SRCS *.cpp)
-file (GLOB INCS ../sort.h)
+# sort_test部分
+set (SORT_TEST_SRC sort_test.cpp)
+set (SORT_INC ../sort.h)
 
-# 生成IDE工程时为源文件定义分组
-source_group ("src" FILES ${SRCS})
-source_group ("include" FILES ${INCS})
+source_group ("src" FILES ${SORT_TEST_SRC})
+source_group ("include" FILES ${SORT_INC})
 
-add_executable (app ${SRCS} ${INCS})
+add_executable (sort_test ${SORT_TEST_SRC} ${SORT_INC})
+
+# structures_test部分
+set (STRUCTURES_TEST_SRC structures_test.cpp)
+set (STRUCTURES_INCS ../forward_list.h)
+
+source_group ("src" FILES ${STRUCTURES_TEST_SRC})
+source_group ("include" FILES ${STRUCTURES_INCS})
+
+add_executable (structures_test ${STRUCTURES_TEST_SRC} ${STRUCTURES_INCS})

@@ -36,4 +36,5 @@ build:
 test_script:
   - cd build
   - dir
-  - .\\%CONFIGURATION%\\app.exe
+  - .\\%CONFIGURATION%\\sort_test.exe
+  - .\\%CONFIGURATION%\\structures_test.exe
