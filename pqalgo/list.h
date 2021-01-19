@@ -22,7 +22,8 @@ class list
 public:
     list();
     ~list();
-    void insert(std::size_t index, T element);
+    bool insert(std::size_t index, T element);
+    bool erase(std::size_t index);
     ListNode<T>* begin() { return head->next; }
     const ListNode<T>* begin() const { return head->next; }
     ListNode<T>* end() { return tail; }
@@ -56,10 +57,10 @@ list<T>::~list()
 }
 
 template <typename T>
-void list<T>::insert(std::size_t index, T element)
+bool list<T>::insert(std::size_t index, T element)
 {
     if (index > cnt) {
-        return;
+        return false;
     }
 
     auto node = new ListNode<T>(element);
@@ -82,7 +83,7 @@ void list<T>::insert(std::size_t index, T element)
         auto p = tail;
         if (cnt != 0) {
             std::size_t prevIdx = cnt;
-            while (p != head && prevIdx-- != index) {
+            while (p != nullptr && prevIdx-- != index) {
                 p = p->prev;
             }
         }
@@ -97,6 +98,52 @@ void list<T>::insert(std::size_t index, T element)
     }
 
     ++cnt;
+    return true;
+}
+
+template <typename T>
+bool list<T>::erase(std::size_t index)
+{
+    if (index > cnt || cnt == 0) {
+        return false;
+    }
+
+    if (index < cnt / 2) {
+        auto p = head;
+        std::size_t nextIdx = 0;
+        while (p != nullptr && nextIdx++ != index) {
+            p = p->next;
+        }
+
+        auto node = p->next;
+        if (node == nullptr) {
+            return false;
+        }
+
+        auto q = node->next;
+        delete node;
+        p->next = q;
+        q->prev = p;
+    } else {
+        auto p = tail;
+        std::size_t prevIdx = cnt;
+        while (p != nullptr && --prevIdx != index) {
+            p = p->prev;
+        }
+
+        auto node = p->prev;
+        if (node == nullptr) {
+            return false;
+        }
+
+        auto q = node->prev;
+        delete node;
+        q->next = p;
+        p->prev = q;
+    }
+
+    --cnt;
+    return true;
 }
 
 } // namespace pqalgo

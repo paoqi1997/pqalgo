@@ -21,7 +21,8 @@ class forward_list
 public:
     forward_list() : head(new Node<T>()) {}
     ~forward_list();
-    void insert(std::size_t index, T element);
+    bool insert(std::size_t index, T element);
+    bool erase(std::size_t index);
     Node<T>* begin() { return head->next; }
     const Node<T>* begin() const { return head->next; }
 private:
@@ -41,7 +42,7 @@ forward_list<T>::~forward_list()
 }
 
 template <typename T>
-void forward_list<T>::insert(std::size_t index, T element)
+bool forward_list<T>::insert(std::size_t index, T element)
 {
     auto p = head;
     // nextIdx是p的next指针所对应的索引
@@ -51,11 +52,40 @@ void forward_list<T>::insert(std::size_t index, T element)
         p = p->next;
     }
 
-    if (p != nullptr) {
+    if (p == nullptr) {
+        return false;
+    } else {
         auto node = new Node<T>(element);
         auto q = p->next;
         p->next = node;
         node->next = q;
+        return true;
+    }
+}
+
+template <typename T>
+bool forward_list<T>::erase(std::size_t index)
+{
+    auto p = head;
+    // nextIdx是p的next指针所对应的索引
+    std::size_t nextIdx = 0;
+
+    while (p != nullptr && nextIdx++ != index) {
+        p = p->next;
+    }
+
+    if (p == nullptr) {
+        return false;
+    } else {
+        auto node = p->next;
+        if (node == nullptr) {
+            return false;
+        }
+
+        auto q = node->next;
+        delete node;
+        p->next = q;
+        return true;
     }
 }
 

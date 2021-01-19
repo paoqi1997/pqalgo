@@ -22,6 +22,17 @@ int main()
     }
     cout << endl;
 
+    fli.erase(2);
+    fli.erase(1);
+    fli.erase(0);
+
+    fp = fli.begin();
+    while (fp != nullptr) {
+        cout << fp->element << ' ';
+        fp = fp->next;
+    }
+    cout << endl;
+
     cout << "[pqalgo/list]" << endl;
     pqalgo::list<int> li;
 
@@ -35,6 +46,19 @@ int main()
         p = p->next;
     }
     cout << endl;
+
+    li.erase(2);
+    li.erase(1);
+    li.erase(0);
+
+    p = li.begin();
+    while (p != li.end()) {
+        cout << p->element << ' ';
+        p = p->next;
+    }
+    cout << endl;
+
+    cout << "ok." << endl;
 
     return 0;
 }
