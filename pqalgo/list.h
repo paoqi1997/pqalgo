@@ -2,6 +2,7 @@
 #define PQALGO_LIST_H
 
 #include <cstddef>
+#include <utility>
 
 namespace pqalgo
 {
@@ -24,10 +25,15 @@ public:
     ~list();
     bool insert(std::size_t index, T element);
     bool erase(std::size_t index);
+    void reverse();
     ListNode<T>* begin() { return head->next; }
     const ListNode<T>* begin() const { return head->next; }
     ListNode<T>* end() { return tail; }
     const ListNode<T>* end() const { return tail; }
+    ListNode<T>* rbegin() { return tail->prev; }
+    const ListNode<T>* rbegin() const { return tail->prev; }
+    ListNode<T>* rend() { return head; }
+    const ListNode<T>* rend() const { return head; }
 private:
     ListNode<T> *head;
     ListNode<T> *tail;
@@ -144,6 +150,32 @@ bool list<T>::erase(std::size_t index)
 
     --cnt;
     return true;
+}
+
+template <typename T>
+void list<T>::reverse()
+{
+    auto p = head->next;
+    if (p == tail || p->next == tail) {
+        return;
+    }
+
+    ListNode<T> *node = head;
+    while (p != tail) {
+        auto q = p->next;
+        p->next = node;
+        node->prev = p;
+        node = p;
+        p = q;
+    }
+
+    tail->next = node;
+    node->prev = tail;
+
+    std::swap(head, tail);
+
+    head->prev = nullptr;
+    tail->next = nullptr;
 }
 
 } // namespace pqalgo
