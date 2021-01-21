@@ -38,3 +38,4 @@ test_script:
   - dir
   - .\\%CONFIGURATION%\\sort_test.exe
   - .\\%CONFIGURATION%\\linearlist_test.exe
+  - .\\%CONFIGURATION%\\tree_test.exe

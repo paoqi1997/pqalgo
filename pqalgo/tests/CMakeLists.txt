@@ -20,3 +20,12 @@ source_group ("src" FILES ${LINEARLIST_TEST_SRC})
 source_group ("include" FILES ${LINEARLIST_INCS})
 
 add_executable (linearlist_test ${LINEARLIST_TEST_SRC} ${LINEARLIST_INCS})
+
+# tree_test部分
+set (TREE_TEST_SRC tree_test.cpp)
+set (TREE_INC ../bstree.h)
+
+source_group ("src" FILES ${TREE_TEST_SRC})
+source_group ("include" FILES ${TREE_INC})
+
+add_executable (tree_test ${TREE_TEST_SRC} ${TREE_INC})

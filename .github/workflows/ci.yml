@@ -15,3 +15,4 @@ jobs:
           cmake --build .
           ./sort_test
           ./linearlist_test
+          ./tree_test
