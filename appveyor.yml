@@ -37,4 +37,4 @@ test_script:
   - cd build
   - dir
   - .\\%CONFIGURATION%\\sort_test.exe
-  - .\\%CONFIGURATION%\\structures_test.exe
+  - .\\%CONFIGURATION%\\linearlist_test.exe

@@ -14,4 +14,4 @@ jobs:
           cmake ..
           cmake --build .
           ./sort_test
-          ./structures_test
+          ./linearlist_test
