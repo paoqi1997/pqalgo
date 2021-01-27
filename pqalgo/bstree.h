@@ -54,10 +54,10 @@ V& bstree<K, V>::operator [] (const K& key)
     auto p = root;
     auto q = p;
     while (p != nullptr) {
-        if (p->key < key) {
+        if (key < p->key) {
             q = p;
             p = p->left;
-        } else if (p->key > key) {
+        } else if (key > p->key) {
             q = p;
             p = p->right;
         } else {
@@ -66,7 +66,7 @@ V& bstree<K, V>::operator [] (const K& key)
         }
     }
 
-    if (q->key < key) {
+    if (key < q->key) {
         q->left = new BSTreeNode<K, V>(key, V());
         return q->left->value;
     } else {

@@ -10,8 +10,13 @@ int main()
     cout << "[pqalgo/bstree]" << endl;
     pqalgo::bstree<int, int> bst;
 
-    bst[1] = 1;
+    /**
+     *     2
+     *   +   +
+     * 1 + + + 3
+     */
     bst[2] = 2;
+    bst[1] = 1;
     bst[3] = 3;
 
     bst.preorder();
