@@ -11,7 +11,7 @@ template <typename T>
 struct ListNode
 {
     ListNode() : prev(nullptr), next(nullptr) {}
-    ListNode(T _element) : prev(nullptr), next(nullptr), element(_element) {}
+    ListNode(const T& _element) : prev(nullptr), next(nullptr), element(_element) {}
     ListNode *prev;
     ListNode *next;
     T element;
@@ -23,7 +23,7 @@ class list
 public:
     list();
     ~list();
-    bool insert(std::size_t index, T element);
+    bool insert(std::size_t index, const T& element);
     bool erase(std::size_t index);
     void reverse();
     ListNode<T>* begin() { return head->next; }
@@ -63,7 +63,7 @@ list<T>::~list()
 }
 
 template <typename T>
-bool list<T>::insert(std::size_t index, T element)
+bool list<T>::insert(std::size_t index, const T& element)
 {
     if (index > cnt) {
         return false;

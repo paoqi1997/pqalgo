@@ -10,7 +10,7 @@ template <typename T>
 struct Node
 {
     Node() : next(nullptr) {}
-    Node(T _element) : next(nullptr), element(_element) {}
+    Node(const T& _element) : next(nullptr), element(_element) {}
     Node *next;
     T element;
 };
@@ -21,7 +21,7 @@ class forward_list
 public:
     forward_list() : head(new Node<T>()) {}
     ~forward_list();
-    bool insert(std::size_t index, T element);
+    bool insert(std::size_t index, const T& element);
     bool erase(std::size_t index);
     void reverse();
     Node<T>* begin() { return head->next; }
@@ -43,7 +43,7 @@ forward_list<T>::~forward_list()
 }
 
 template <typename T>
-bool forward_list<T>::insert(std::size_t index, T element)
+bool forward_list<T>::insert(std::size_t index, const T& element)
 {
     auto p = head;
     // nextIdx是p的next指针所对应的索引

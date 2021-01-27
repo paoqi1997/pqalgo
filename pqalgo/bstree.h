@@ -10,7 +10,8 @@ template <typename K, typename V>
 struct BSTreeNode
 {
     BSTreeNode() : left(nullptr), right(nullptr) {}
-    BSTreeNode(K _key, V _value) : left(nullptr), right(nullptr), key(_key), value(_value) {}
+    BSTreeNode(const K& _key, const V& _value)
+        : left(nullptr), right(nullptr), key(_key), value(_value) {}
     BSTreeNode *left;
     BSTreeNode *right;
     K key;
