@@ -26,12 +26,14 @@ int main()
     bst.preorder();
     bst.inorder();
     bst.postorder();
+    bst.levelOrder();
 
     bst.remove(5);
 
     bst.preorder();
     bst.inorder();
     bst.postorder();
+    bst.levelOrder();
 
     cout << "ok." << endl;
 

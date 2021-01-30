@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "list.h"
+
 namespace pqalgo
 {
 
@@ -29,6 +31,7 @@ public:
     void preorder() const;
     void inorder() const;
     void postorder() const;
+    void levelOrder() const;
 private:
     void destruct(BSTreeNode<K, V> *node);
     void __preorder(BSTreeNode<K, V> *node) const;
@@ -181,6 +184,33 @@ template <typename K, typename V>
 void bstree<K, V>::postorder() const
 {
     __postorder(root);
+    std::cout << std::endl;
+}
+
+template <typename K, typename V>
+void bstree<K, V>::levelOrder() const
+{
+    if (root == nullptr) {
+        return;
+    }
+
+    auto p = root;
+    list<BSTreeNode<K, V>*> nodes;
+    nodes.push_back(p);
+
+    while (!nodes.empty()) {
+        auto node = nodes.front();
+        if (node->left != nullptr) {
+            nodes.push_back(node->left);
+        }
+        if (node->right != nullptr) {
+            nodes.push_back(node->right);
+        }
+
+        std::cout << node->value << ' ';
+        nodes.pop_front();
+    }
+
     std::cout << std::endl;
 }
 

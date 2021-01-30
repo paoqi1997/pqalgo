@@ -24,8 +24,15 @@ public:
     list();
     ~list();
     bool insert(std::size_t index, const T& element);
+    void push_front(const T& element);
+    void push_back(const T& element);
     bool erase(std::size_t index);
+    bool pop_front();
+    bool pop_back();
     void reverse();
+    T& front() { return head->next->element; }
+    const T& front() const { return head->next->element; }
+    bool empty() const { return cnt == 0; }
     ListNode<T>* begin() { return head->next; }
     const ListNode<T>* begin() const { return head->next; }
     ListNode<T>* end() { return tail; }
@@ -108,6 +115,38 @@ bool list<T>::insert(std::size_t index, const T& element)
 }
 
 template <typename T>
+void list<T>::push_front(const T& element)
+{
+    auto node = new ListNode<T>(element);
+    auto p = head->next;
+
+    // prev部分
+    p->prev = node;
+    node->prev = head;
+    // next部分
+    head->next = node;
+    node->next = p;
+
+    ++cnt;
+}
+
+template <typename T>
+void list<T>::push_back(const T& element)
+{
+    auto node = new ListNode<T>(element);
+    auto p = tail->prev;
+
+    // prev部分
+    tail->prev = node;
+    node->prev = p;
+    // next部分
+    p->next = node;
+    node->next = tail;
+
+    ++cnt;
+}
+
+template <typename T>
 bool list<T>::erase(std::size_t index)
 {
     if (index > cnt || cnt == 0) {
@@ -148,6 +187,42 @@ bool list<T>::erase(std::size_t index)
         p->prev = q;
     }
 
+    --cnt;
+    return true;
+}
+
+template <typename T>
+bool list<T>::pop_front()
+{
+    if (cnt == 0) {
+        return false;
+    }
+
+    auto p = head->next;
+    auto q = p->next;
+
+    head->next = q;
+    q->prev = head;
+
+    delete p;
+    --cnt;
+    return true;
+}
+
+template <typename T>
+bool list<T>::pop_back()
+{
+    if (cnt == 0) {
+        return false;
+    }
+
+    auto p = tail->prev;
+    auto q = p->prev;
+
+    tail->prev = q;
+    q->next = tail;
+
+    delete p;
     --cnt;
     return true;
 }
