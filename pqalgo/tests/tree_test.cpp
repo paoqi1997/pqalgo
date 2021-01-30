@@ -13,11 +13,21 @@ int main()
     /**
      *     2
      *   +   +
-     * 1 + + + 3
+     * 1 + + + 5
+     *       +   +
+     *     3 + + + 7
      */
     bst[2] = 2;
     bst[1] = 1;
+    bst[5] = 5;
     bst[3] = 3;
+    bst[7] = 7;
+
+    bst.preorder();
+    bst.inorder();
+    bst.postorder();
+
+    bst.remove(5);
 
     bst.preorder();
     bst.inorder();
