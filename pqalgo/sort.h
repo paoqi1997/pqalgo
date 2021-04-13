@@ -224,6 +224,56 @@ void mergesort(T m[], std::size_t n)
 }
 
 template <typename T>
+void __ms_r(T m[], T tmp[], std::size_t low, std::size_t middle, std::size_t high)
+{
+    std::size_t i = low, j = middle + 1, pos = 0;
+
+    while (i <= middle && j <= high) {
+        if (m[i] <= m[j]) {
+            tmp[pos++] = m[i++];
+        } else {
+            tmp[pos++] = m[j++];
+        }
+    }
+
+    while (i <= middle) {
+        tmp[pos++] = m[i++];
+    }
+    while (j <= high) {
+        tmp[pos++] = m[j++];
+    }
+
+    for (std::size_t i = low, pos = 0; i <= high; ++i, ++pos) {
+        m[i] = tmp[pos];
+    }
+}
+
+template <typename T>
+void __mergesort_r(T m[], T tmp[], std::size_t low, std::size_t high)
+{
+    if (low >= high) {
+        return;
+    }
+
+    std::size_t middle = low + (high - low) / 2;
+
+    __mergesort_r(m, tmp, 0, middle);
+    __mergesort_r(m, tmp, middle + 1, high);
+
+    __ms_r(m, tmp, low, middle, high);
+}
+
+template <typename T>
+void mergesort_r(T m[], std::size_t n)
+{
+    auto tmp = new T[n];
+
+    __mergesort_r(m, tmp, 0, n - 1);
+
+    delete []tmp;
+}
+
+template <typename T>
 std::size_t __radixsort(T m[], std::size_t n);
 
 template <>
