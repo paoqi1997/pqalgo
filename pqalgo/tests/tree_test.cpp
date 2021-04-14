@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../bstree.h"
+#include <pqalgo/bstree.h>
 
 using std::cout;
 using std::endl;
