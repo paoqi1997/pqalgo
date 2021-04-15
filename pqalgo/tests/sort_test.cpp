@@ -10,8 +10,11 @@ do {                                                          \
     std::for_each(m, m + len, [&n](int& x){ x = int(--n); }); \
                                                               \
     sortfunc(m, len);                                         \
-    assert(std::is_sorted(m, m + len) == true);               \
+    assert(std::is_sorted(m, m + len));                       \
 } while (0)
+
+using std::cout;
+using std::endl;
 
 int main()
 {
@@ -28,7 +31,7 @@ int main()
     UNITTEST(m, len, pqalgo::mergesort_r);
     UNITTEST(m, len, pqalgo::radixsort);
 
-    std::cout << "ok." << std::endl;
+    cout << "ok." << endl;
 
     return 0;
 }

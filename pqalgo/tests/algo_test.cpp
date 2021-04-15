@@ -10,9 +10,11 @@ int main()
 {
     std::string s = "12 345 6789 0", p = "789";
 
-    std::size_t idx = pqalgo::kmp(s.c_str(), p.c_str());
+    std::size_t idx1 = pqalgo::bf(s.c_str(), p.c_str());
+    std::size_t idx2 = pqalgo::kmp(s.c_str(), p.c_str());
 
-    cout << idx << ' ' << s.substr(idx, p.length()) << endl;
+    cout << idx1 << ' ' << s.substr(idx1, p.length()) << endl;
+    cout << idx2 << ' ' << s.substr(idx2, p.length()) << endl;
 
     return 0;
 }

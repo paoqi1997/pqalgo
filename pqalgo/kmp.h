@@ -6,6 +6,30 @@
 namespace pqalgo
 {
 
+inline int bf(const char *s, const char *p)
+{
+    int lenS = std::strlen(s);
+    int lenP = std::strlen(p);
+
+    int i = 0, j = 0;
+
+    while (i < lenS && j < lenP) {
+        if (s[i] == p[j]) {
+            ++i;
+            ++j;
+        } else {
+            i = i - j + 1;
+            j = 0;
+        }
+    }
+
+    if (j == lenP) {
+        return i - j;
+    } else {
+        return -1;
+    }
+}
+
 inline int* getNext(const char *p, std::size_t len)
 {
     int *next = new int[len];
