@@ -32,9 +32,9 @@ add_executable (tree_test ${TREE_TEST_SRC} ${TREE_INC})
 
 # algo_test部分
 set (ALGO_TEST_SRC algo_test.cpp)
-set (ALGO_INC ../kmp.h)
+set (ALGO_INCS ../kmp.h ../trie.h)
 
 source_group ("src" FILES ${ALGO_TEST_SRC})
-source_group ("include" FILES ${ALGO_INC})
+source_group ("include" FILES ${ALGO_INCS})
 
-add_executable (algo_test ${ALGO_TEST_SRC} ${ALGO_INC})
+add_executable (algo_test ${ALGO_TEST_SRC} ${ALGO_INCS})

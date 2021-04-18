@@ -16,3 +16,4 @@ jobs:
           ./sort_test
           ./linearlist_test
           ./tree_test
+          ./algo_test
