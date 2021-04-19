@@ -13,11 +13,15 @@ int main()
 
     std::string s = "12 345 6789 0", p = "789";
 
-    std::size_t idx1 = pqalgo::bf(s.c_str(), p.c_str());
-    std::size_t idx2 = pqalgo::kmp(s.c_str(), p.c_str());
+    int idx1 = pqalgo::bf(s.c_str(), p.c_str());
+    int idx2 = pqalgo::kmp(s.c_str(), p.c_str());
 
-    cout << idx1 << ' ' << s.substr(idx1, p.length()) << endl;
-    cout << idx2 << ' ' << s.substr(idx2, p.length()) << endl;
+    if (idx1 != -1) {
+        cout << idx1 << ' ' << s.substr(idx1, p.length()) << endl;
+    }
+    if (idx2 != -1) {
+        cout << idx2 << ' ' << s.substr(idx2, p.length()) << endl;
+    }
 
     cout << "[pqalgo/trie]" << endl;
 

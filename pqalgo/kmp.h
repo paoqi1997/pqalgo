@@ -37,6 +37,24 @@ inline int* getNext(const char *p, std::size_t len)
 
     int i = 0, j = -1;
 
+    // bbc abcdab abcdabcdabde
+    //     abcdabd
+    //         abcdabd
+    //            abcdabd
+    //                abcdabd
+
+    // 失配时，模式串向右移动的位数是：已匹配字符数 - 失配字符上一个字符所对应的最大长度值
+    // 最大长度值为前缀与后缀的最大公共元素长度，比如 abcdab 的最大长度值为2，即 ab 的长度值
+
+    // 若 p 为 abcdabd，那么有以下 next 值：
+    // a       next[0] = -1
+    // ab      next[1] = 0
+    // abc     next[2] = 0
+    // abcd    next[3] = 0
+    // abcda   next[4] = 0
+    // abcdab  next[5] = 1
+    // abcdabd next[6] = 2
+
     while (i < len - 1) {
         if (j == -1 || p[i] == p[j]) {
             next[++i] = ++j;
