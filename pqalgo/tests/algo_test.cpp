@@ -26,12 +26,14 @@ int main()
     cout << "[pqalgo/trie]" << endl;
 
     pqalgo::Trie trie;
+
     trie.insert("my");
     trie.insert("mydb");
     trie.insert("mysql");
 
-    cout << trie.find("milk") << endl;
-    cout << trie.find("mysql") << endl;
+    cout << trie.find("milk") << ' ' << trie.find("mysql") << endl;
+
+    cout << trie.startsWith("mike") << ' ' << trie.startsWith("my") << endl;
 
     return 0;
 }

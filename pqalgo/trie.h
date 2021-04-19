@@ -60,6 +60,21 @@ public:
 
         return p->isEnd;
     }
+    bool startsWith(const char *s) {
+        auto p = root;
+
+        for (std::size_t i = 0; i < std::strlen(s); ++i) {
+            char c = s[i];
+
+            if (p->children[c - 'a'] == nullptr) {
+                return false;
+            }
+
+            p = p->children[c - 'a'];
+        }
+
+        return true;
+    }
 private:
     template <std::size_t N>
     void destruct(TrieNode<N> *node) {
