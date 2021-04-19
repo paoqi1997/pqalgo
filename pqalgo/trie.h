@@ -19,11 +19,10 @@ struct TrieNode
     bool isEnd;
 };
 
-template <std::size_t N>
 class Trie
 {
 public:
-    Trie() : root(new TrieNode<N>()) {}
+    Trie() : root(new TrieNode<Num>()) {}
     ~Trie() {
         destruct(root);
 
@@ -37,7 +36,7 @@ public:
             char c = s[i];
 
             if (p->children[c - 'a'] == nullptr) {
-                p->children[c - 'a'] = new TrieNode<N>();
+                p->children[c - 'a'] = new TrieNode<Num>();
                 ++p->cnt;
             }
 
@@ -62,6 +61,7 @@ public:
         return p->isEnd;
     }
 private:
+    template <std::size_t N>
     void destruct(TrieNode<N> *node) {
         for (std::size_t i = 0; i < N; ++i) {
             if (node->children[i] == nullptr) {
@@ -79,7 +79,9 @@ private:
         }
     }
 private:
-    TrieNode<N> *root;
+    static const std::size_t Num = 26;
+private:
+    TrieNode<Num> *root;
 };
 
 } // namespace pqalgo

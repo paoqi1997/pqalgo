@@ -25,7 +25,7 @@ int main()
 
     cout << "[pqalgo/trie]" << endl;
 
-    pqalgo::Trie<26> trie;
+    pqalgo::Trie trie;
     trie.insert("my");
     trie.insert("mydb");
     trie.insert("mysql");
