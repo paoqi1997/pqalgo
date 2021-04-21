@@ -3,16 +3,19 @@ project(unittests)
 
 include_directories(../..)
 
-set(UNITTESTS_SRC
+set(UNITTESTS_SRCS
+    algo_gtest.cpp
     sort_gtest.cpp
 )
 
-set(UNITTESTS_INC
+set(UNITTESTS_INCS
+    ../kmp.h
     ../sort.h
+    ../trie.h
 )
 
-source_group("src" FILES ${UNITTESTS_SRC})
-source_group("include" FILES ${UNITTESTS_INC})
+source_group("src" FILES ${UNITTESTS_SRCS})
+source_group("include" FILES ${UNITTESTS_INCS})
 
-add_executable(uts ${UNITTESTS_SRC} ${UNITTESTS_INC})
+add_executable(uts ${UNITTESTS_SRCS} ${UNITTESTS_INCS})
 target_link_libraries(uts gtest gtest_main pthread)
