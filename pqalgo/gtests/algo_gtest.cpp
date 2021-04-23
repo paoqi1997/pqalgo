@@ -1,5 +1,6 @@
 #include <string>
 
+#include <pqalgo/lru.h>
 #include <pqalgo/kmp.h>
 #include <pqalgo/trie.h>
 
@@ -38,4 +39,23 @@ TEST_F(CAlgoTest, TestTrie)
 
     EXPECT_FALSE(trie.startsWith("mike"));
     EXPECT_TRUE(trie.startsWith("my"));
+}
+
+TEST_F(CAlgoTest, TestLRU)
+{
+    pqalgo::LRU<int, int> lru(5);
+
+    lru[1] = 1;
+    lru[3] = 3;
+    lru[5] = 5;
+    lru[7] = 7;
+    lru[9] = 9;
+
+    EXPECT_EQ(lru.front().first, 9);
+    EXPECT_EQ(lru.back().first, 1);
+
+    lru[6] = 6;
+
+    EXPECT_EQ(lru.front().first, 6);
+    EXPECT_EQ(lru.back().first, 3);
 }

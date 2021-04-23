@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+#include <pqalgo/lru.h>
 #include <pqalgo/kmp.h>
 #include <pqalgo/trie.h>
 
@@ -34,6 +35,28 @@ int main()
     cout << trie.find("milk") << ' ' << trie.find("mysql") << endl;
 
     cout << trie.startsWith("mike") << ' ' << trie.startsWith("my") << endl;
+
+    cout << "[pqalgo/lru]" << endl;
+
+    pqalgo::LRU<int, int> lru(5);
+
+    lru[1] = 1;
+    lru[3] = 3;
+    lru[5] = 5;
+    lru[7] = 7;
+    lru[9] = 9;
+
+    for (auto it = lru.begin(); it != lru.end(); ++it) {
+        cout << it->first << ':' << it->second << ' ';
+    }
+    cout << endl;
+
+    lru[6] = 6;
+
+    for (auto it = lru.begin(); it != lru.end(); ++it) {
+        cout << it->first << ':' << it->second << ' ';
+    }
+    cout << endl;
 
     return 0;
 }
