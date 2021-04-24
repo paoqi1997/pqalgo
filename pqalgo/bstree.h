@@ -66,7 +66,6 @@ V& bstree<K, V>::operator [] (const K& key)
             q = p;
             p = p->right;
         } else {
-            p->value = V();
             return p->value;
         }
     }

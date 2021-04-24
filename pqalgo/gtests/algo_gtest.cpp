@@ -55,6 +55,7 @@ TEST_F(CAlgoTest, TestLRU)
     EXPECT_EQ(lru.back().first, 1);
 
     lru[6] = 6;
+    EXPECT_EQ(lru[6], 6);
 
     EXPECT_EQ(lru.front().first, 6);
     EXPECT_EQ(lru.back().first, 3);

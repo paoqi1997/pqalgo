@@ -42,7 +42,6 @@ V& LRU<K, V>::operator [] (const K& key)
     auto it = m_tbl.find(key);
     if (it != m_tbl.end()) {
         m_lru.splice(m_lru.begin(), m_lru, it->second);
-        it->second->second = V();
         return it->second->second;
     }
 

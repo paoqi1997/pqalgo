@@ -21,7 +21,9 @@ int main()
     bst[1] = 1;
     bst[5] = 5;
     bst[3] = 3;
+
     bst[7] = 7;
+    cout << bst[7] << endl;
 
     bst.preorder();
     bst.inorder();

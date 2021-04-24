@@ -52,9 +52,10 @@ int main()
     cout << endl;
 
     lru[6] = 6;
+    cout << lru[4] << endl;
 
-    for (auto it = lru.begin(); it != lru.end(); ++it) {
-        cout << it->first << ':' << it->second << ' ';
+    for (auto& kv : lru) {
+        cout << kv.first << ':' << kv.second << ' ';
     }
     cout << endl;
 

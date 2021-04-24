@@ -14,7 +14,10 @@ add_executable (sort_test ${SORT_TEST_SRC} ${SORT_INC})
 
 # linearlist_test部分
 set (LINEARLIST_TEST_SRC linearlist_test.cpp)
-set (LINEARLIST_INCS ../forward_list.h ../list.h)
+set (LINEARLIST_INCS
+    ../forward_list.h
+    ../list.h
+)
 
 source_group ("src" FILES ${LINEARLIST_TEST_SRC})
 source_group ("include" FILES ${LINEARLIST_INCS})
@@ -32,7 +35,11 @@ add_executable (tree_test ${TREE_TEST_SRC} ${TREE_INC})
 
 # algo_test部分
 set (ALGO_TEST_SRC algo_test.cpp)
-set (ALGO_INCS ../kmp.h ../trie.h)
+set (ALGO_INCS
+    ../lru.h
+    ../kmp.h
+    ../trie.h
+)
 
 source_group ("src" FILES ${ALGO_TEST_SRC})
 source_group ("include" FILES ${ALGO_INCS})
