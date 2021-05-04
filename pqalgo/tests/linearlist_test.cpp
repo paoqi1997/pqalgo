@@ -2,6 +2,7 @@
 
 #include <pqalgo/forward_list.h>
 #include <pqalgo/list.h>
+#include <pqalgo/skiplist.h>
 
 using std::cout;
 using std::endl;
@@ -89,6 +90,30 @@ int main()
         p = p->next;
     }
     cout << endl;
+
+    cout << "[pqalgo/skiplist]" << endl;
+    pqalgo::skiplist<int, int> sl;
+
+    pqalgo::initRandom();
+
+    for (int i = 0; i < 10; ++i) {
+        cout << pqalgo::RandomLevel(4) << ' ';
+    }
+    cout << endl;
+
+    sl[4] = 4;
+    sl[3] = 3;
+    sl[2] = 2;
+    sl[1] = 1;
+
+    sl.print();
+
+    sl.remove(2);
+
+    sl[3] = 6;
+    sl[4] = 8;
+
+    sl.print();
 
     cout << "ok." << endl;
 

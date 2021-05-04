@@ -17,6 +17,7 @@ set (LINEARLIST_TEST_SRC linearlist_test.cpp)
 set (LINEARLIST_INCS
     ../forward_list.h
     ../list.h
+    ../skiplist.h
 )
 
 source_group ("src" FILES ${LINEARLIST_TEST_SRC})
