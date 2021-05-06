@@ -92,7 +92,6 @@ int main()
     cout << endl;
 
     cout << "[pqalgo/skiplist]" << endl;
-    pqalgo::skiplist<int, int> sl;
 
     pqalgo::initRandom();
 
@@ -100,6 +99,8 @@ int main()
         cout << pqalgo::RandomLevel(4) << ' ';
     }
     cout << endl;
+
+    pqalgo::skiplist<int, int> sl;
 
     sl[4] = 4;
     sl[3] = 3;

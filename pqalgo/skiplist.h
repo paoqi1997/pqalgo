@@ -58,7 +58,7 @@ public:
     SkipListNode<K, V>* find(const K& key) const;
     void print() const;
 private:
-    static const std::size_t MaxLevel = 4;
+    static constexpr std::size_t MaxLevel = 4;
 private:
     SkipListNode<K, V> *head;
 };
