@@ -95,5 +95,21 @@ int main()
     }
     cout << endl;
 
+    v = {9, 5, 4, 1, 1, 3};
+
+    cout << "v: ";
+    for (int c : v) {
+        cout << c << ' ';
+    }
+    cout << endl;
+
+    pqalgo::pop_heap(v.begin(), v.end());
+
+    cout << "after pop_heap: ";
+    for (int c : v) {
+        cout << c << ' ';
+    }
+    cout << endl;
+
     return 0;
 }
