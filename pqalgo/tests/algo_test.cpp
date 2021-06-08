@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-#include <pqalgo/lru.h>
+#include <pqalgo/heap.h>
 #include <pqalgo/kmp.h>
+#include <pqalgo/lru.h>
 #include <pqalgo/trie.h>
 
 using std::cout;
@@ -56,6 +58,24 @@ int main()
 
     for (auto& kv : lru) {
         cout << kv.first << ':' << kv.second << ' ';
+    }
+    cout << endl;
+
+    cout << "[pqalgo/heap]" << endl;
+
+    std::vector<int> v{3, 1, 4, 1, 5, 9};
+
+    cout << "initially, v: ";
+    for (int c : v) {
+        cout << c << ' ';
+    }
+    cout << endl;
+
+    pqalgo::make_heap(v.begin(), v.end());
+
+    cout << "after make_heap, v: ";
+    for (int c : v) {
+        cout << c << ' ';
     }
     cout << endl;
 

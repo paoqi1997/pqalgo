@@ -37,8 +37,9 @@ add_executable (tree_test ${TREE_TEST_SRC} ${TREE_INC})
 # algo_test部分
 set (ALGO_TEST_SRC algo_test.cpp)
 set (ALGO_INCS
-    ../lru.h
+    ../heap.h
     ../kmp.h
+    ../lru.h
     ../trie.h
 )
 

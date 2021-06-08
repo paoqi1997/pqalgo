@@ -9,8 +9,8 @@ set(UNITTESTS_SRCS
 )
 
 set(UNITTESTS_INCS
-    ../lru.h
     ../kmp.h
+    ../lru.h
     ../sort.h
     ../trie.h
 )
