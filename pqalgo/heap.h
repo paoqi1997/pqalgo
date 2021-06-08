@@ -35,6 +35,36 @@ void make_heap(RandomIt first, RandomIt last)
     }
 }
 
+template <typename RandomIt>
+void push_heap(RandomIt first, RandomIt last)
+{
+    auto m = first;
+    std::size_t n = last - first;
+
+    int leafIndex = n - 1;
+    int rootIndex = (leafIndex - 1) / 2;
+
+    auto newVal = m[leafIndex];
+
+    while (rootIndex >= 0) {
+        if (m[rootIndex] >= newVal) {
+            break;
+        } else {
+            m[leafIndex] = m[rootIndex];
+            leafIndex = rootIndex;
+            rootIndex = (leafIndex - 1) / 2;
+        }
+    }
+
+    m[leafIndex] = newVal;
+}
+
+template <typename RandomIt>
+void pop_heap(RandomIt first, RandomIt last)
+{
+
+}
+
 } // namespace pqalgo
 
 #endif // PQALGO_HEAP_H

@@ -79,5 +79,21 @@ int main()
     }
     cout << endl;
 
+    v.push_back(6);
+
+    cout << "before push_heap: ";
+    for (int c : v) {
+        cout << c << ' ';
+    }
+    cout << endl;
+
+    pqalgo::push_heap(v.begin(), v.end());
+
+    cout << "after push_heap: ";
+    for (int c : v) {
+        cout << c << ' ';
+    }
+    cout << endl;
+
     return 0;
 }
