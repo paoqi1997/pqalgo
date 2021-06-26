@@ -93,8 +93,6 @@ int main()
 
     cout << "[pqalgo/skiplist]" << endl;
 
-    pqalgo::initRandom();
-
     for (int i = 0; i < 10; ++i) {
         cout << pqalgo::RandomLevel(4) << ' ';
     }

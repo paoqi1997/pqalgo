@@ -15,6 +15,12 @@ inline void initRandom()
 
 inline int Random(int n)
 {
+    static bool inited = false;
+    if (!inited) {
+        initRandom();
+        inited = true;
+    }
+
     return std::rand() % n;
 }
 
