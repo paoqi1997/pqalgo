@@ -66,18 +66,18 @@ void __heapsort(T m[], std::size_t rootIndex, std::size_t n)
 {
     // 面对子树
     T rootVal = m[rootIndex];
-    // 根节点的左叶子节点
+    // 根节点的左子节点
     std::size_t leafIndex = rootIndex * 2 + 1;
     while (leafIndex < n)
     {
-        // 右叶子节点存在并且它比左叶子节点要大
+        // 右子节点存在并且它比左子节点要大
         if (leafIndex + 1 < n && m[leafIndex] < m[leafIndex + 1]) {
-            // 取得右叶子节点的索引
+            // 取得右子节点的索引
             ++leafIndex;
         }
-        // 根节点比叶子节点小
+        // 根节点比子节点小
         if (rootVal < m[leafIndex]) {
-            // 把叶子节点换到根节点
+            // 把子节点换到根节点
             m[rootIndex] = m[leafIndex];
             rootIndex = leafIndex, leafIndex = rootIndex * 2 + 1;
         } else {

@@ -97,39 +97,39 @@ bool bstree<K, V>::remove(const K& key)
         return false;
     }
 
-    // 待删节点有两个叶子节点
+    // 待删节点有两个子节点
     if (p->left != nullptr && p->right != nullptr) {
         auto pl = p->left;
         auto ql = p;
-        // 在p的左子树找到最大叶子节点
+        // 在 p 的左子树找到最大子节点
         while (pl->right != nullptr) {
             ql = pl;
             pl = pl->right;
         }
 
-        // 新建pnew准备取代p
+        // 新建 pnew 准备取代 p
         auto pnew = new BSTreeNode<K, V>(pl->key, pl->value);
         pnew->left = p->left;
         pnew->right = p->right;
 
-        // p的父节点为nullptr，说明p为根节点
+        // p 的父节点为 nullptr，说明 p 为根节点
         if (q == nullptr) {
             root = q;
         }
-        // p为其父节点的左叶子节点
+        // p 为其父节点的左子节点
         else if (p == q->left) {
             q->left = pnew;
         }
-        // p为其父节点的右叶子节点
+        // p 为其父节点的右子节点
         else {
             q->right = pnew;
         }
 
-        // 实际上是将两个叶子节点的情况转化为一个叶子节点的情况
-        // 接下来准备处理ql及pl，对应有q及p
+        // 实际上是将两个子节点的情况转化为一个子节点的情况
+        // 接下来准备处理 ql 及 pl，对应有 q 及 p
 
-        // 如果p是最大左叶子节点的父节点，这意味着p的左子树只有一个叶子节点
-        // 即将删除ql所指向的节点，q应转向新设置的pnew而不是ql
+        // 如果 p 是最大左子节点的父节点，这意味着 p 的左子树只有一个子节点
+        // 即将删除 ql 所指向的节点，q 应转向新设置的 pnew 而不是 ql
         if (p == ql) {
             q = pnew;
         } else {
@@ -141,7 +141,7 @@ bool bstree<K, V>::remove(const K& key)
     }
 
     BSTreeNode<K, V> *pc;
-    // 待删节点只有一个叶子节点，取得其叶子节点
+    // 待删节点只有一个子节点，取得其子节点
     if (p->left != nullptr) {
         pc = p->left;
     } else {
@@ -152,7 +152,7 @@ bool bstree<K, V>::remove(const K& key)
     if (p == root) {
         root = pc;
     }
-    // q指向p的叶子节点
+    // q 指向 p 的子节点
     else {
         if (p == q->left) {
             q->left = pc;
