@@ -16,6 +16,8 @@ int main()
 
     std::string s = "12 345 6789 0", p = "789";
 
+    cout << pqalgo::strstr(s.c_str(), p.c_str()) << endl;
+
     int idx1 = pqalgo::bf(s.c_str(), p.c_str());
     int idx2 = pqalgo::kmp(s.c_str(), p.c_str());
 

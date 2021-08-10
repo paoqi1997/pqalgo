@@ -6,6 +6,28 @@
 namespace pqalgo
 {
 
+inline char* strstr(const char *str, const char *substr)
+{
+    const char *ss = str;
+
+    for (; *ss != '\0'; ++ss) {
+        const char *s = ss;
+        const char *p = substr;
+
+        for (; *s != '\0' && *p != '\0'; ++s, ++p) {
+            if (*s != *p) {
+                break;
+            }
+        }
+
+        if (*p == '\0') {
+            return const_cast<char*>(ss);
+        }
+    }
+
+    return nullptr;
+}
+
 inline int bf(const char *s, const char *p)
 {
     int lenS = std::strlen(s);
