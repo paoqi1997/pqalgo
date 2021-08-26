@@ -5,7 +5,10 @@ include_directories (../..)
 
 # sort_test部分
 set (SORT_TEST_SRC sort_test.cpp)
-set (SORT_INC ../sort.h)
+set (SORT_INC
+    ../qsort.h
+    ../sort.h
+)
 
 source_group ("src" FILES ${SORT_TEST_SRC})
 source_group ("include" FILES ${SORT_INC})

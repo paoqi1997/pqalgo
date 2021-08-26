@@ -11,6 +11,7 @@ set(UNITTESTS_SRCS
 set(UNITTESTS_INCS
     ../kmp.h
     ../lru.h
+    ../qsort.h
     ../sort.h
     ../trie.h
 )

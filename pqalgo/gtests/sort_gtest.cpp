@@ -1,5 +1,6 @@
 #include <algorithm>
 
+#include <pqalgo/qsort.h>
 #include <pqalgo/sort.h>
 
 #include "gtest/gtest.h"

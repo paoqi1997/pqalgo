@@ -2,6 +2,7 @@
 #include <cassert>
 #include <iostream>
 
+#include <pqalgo/qsort.h>
 #include <pqalgo/sort.h>
 
 #define UNITTEST(m, len, sortfunc)                            \
