@@ -35,6 +35,7 @@ TEST_F(CSortTest, TestSorted)
     UNITTEST(m, len, pqalgo::bubblesort);
     UNITTEST(m, len, pqalgo::quicksort);
     UNITTEST(m, len, pqalgo::quicksort_v2);
+    UNITTEST(m, len, pqalgo::quicksort_v3);
     UNITTEST(m, len, pqalgo::mergesort);
     UNITTEST(m, len, pqalgo::mergesort_r);
     UNITTEST(m, len, pqalgo::radixsort);
