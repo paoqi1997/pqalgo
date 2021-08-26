@@ -3,6 +3,10 @@ project(unittests)
 
 include_directories(../..)
 
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options(-g)
+endif()
+
 set(UNITTESTS_SRCS
     algo_gtest.cpp
     sort_gtest.cpp

@@ -2,6 +2,7 @@
 #define PQALGO_QSORT_H
 
 #include <cstddef>
+#include <stack>
 #include <utility>
 
 namespace pqalgo
@@ -57,6 +58,51 @@ template <typename T>
 void quicksort(T m[], std::size_t n)
 {
     __quicksort(m, 0, n - 1);
+}
+
+/**
+ * 非递归版
+ */
+template <typename T>
+void __quicksort_nr(T m[], int left, int right)
+{
+    std::stack<int> stk;
+
+    int index = qs(m, left, right);
+
+    if (left < index - 1) {
+        stk.push(left);
+        stk.push(index - 1);
+    }
+    if (index + 1 < right) {
+        stk.push(index + 1);
+        stk.push(right);
+    }
+
+    while (!stk.empty()) {
+        int r = stk.top();
+        stk.pop();
+
+        int l = stk.top();
+        stk.pop();
+
+        index = qs(m, l, r);
+
+        if (l < index - 1) {
+            stk.push(l);
+            stk.push(index - 1);
+        }
+        if (index + 1 < r) {
+            stk.push(index + 1);
+            stk.push(r);
+        }
+    }
+}
+
+template <typename T>
+void quicksort_nr(T m[], std::size_t n)
+{
+    __quicksort_nr(m, 0, n - 1);
 }
 
 /**

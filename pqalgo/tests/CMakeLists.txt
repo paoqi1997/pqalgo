@@ -3,6 +3,10 @@ project (unittests)
 
 include_directories (../..)
 
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options (-g)
+endif ()
+
 # sort_test部分
 set (SORT_TEST_SRC sort_test.cpp)
 set (SORT_INC
