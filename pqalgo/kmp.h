@@ -99,6 +99,10 @@ inline int kmp(const char *s, const char *p)
 
     int i = 0, j = 0;
 
+    // abcdabcdabde
+    // abcdabd
+    // 最后一位 c 与 d 不匹配，字符串 p 回退至 p[2]
+    // 对于已匹配的部分，可以跳过公共前缀部分即 ab 再接着匹配
     while (i < lenS && j < lenP) {
         if (j == -1 || s[i] == p[j]) {
             ++i;
