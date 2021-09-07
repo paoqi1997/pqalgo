@@ -94,7 +94,7 @@ private:
         }
     }
 private:
-    static const std::size_t Num = 26;
+    static const std::size_t Num = 'z' - 'a' + 1;
 private:
     TrieNode<Num> *root;
 };
